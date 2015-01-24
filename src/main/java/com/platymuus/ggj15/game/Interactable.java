@@ -10,7 +10,7 @@ import org.jsfml.graphics.RenderTarget;
  */
 public abstract class Interactable extends Entity {
 
-    protected boolean active;
+    private boolean active;
     protected OutlinedText interactText;
 
     public Interactable() {

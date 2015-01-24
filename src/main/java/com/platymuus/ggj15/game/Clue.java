@@ -29,17 +29,6 @@ public class Clue extends Interactable{
         int DISTRIB = 500;
         return (float) (Math.random() * 2 * DISTRIB) - DISTRIB;
     }
-	
-	@Override
-	public void setActive(boolean active) {
-        this.active = active;
-        if (active) {
-            interactText.setString("(" + Control.ACTION.describe(world.controllerMode) + ") " + getInteractText());
-            Hacks.hCenter(interactText);
-		}else {
-            interactText.setString("");
-        }
-    }
 
 	@Override
 	public String getInteractText() {
