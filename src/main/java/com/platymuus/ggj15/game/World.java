@@ -47,8 +47,8 @@ public class World implements Drawable {
         for (int i = 0; i < totalLandmarks; ++i) {
             entities.add(new Landmark());
         }
-       for( int i = 0; i < 5; ++i){
-        	entities.add(new Clue("This is clue # " + i));
+        for (int i = 0; i < 5; ++i) {
+            entities.add(new Clue("This is clue # " + i));
         }
 
         island = Resources.getSprite("game/island-half.png");
@@ -112,7 +112,7 @@ public class World implements Drawable {
         float tx = Math.abs(delta.x), ty = Math.abs(delta.y);
 
         do {
-            Vector2f newLoc = new Vector2f(entity.location.x + sx*tx, entity.location.y);
+            Vector2f newLoc = new Vector2f(entity.location.x + sx * tx, entity.location.y);
             if (canOccupy(entity, newLoc)) {
                 break;
             }
@@ -120,14 +120,14 @@ public class World implements Drawable {
         } while (tx > 0);
 
         do {
-            Vector2f newLoc = new Vector2f(entity.location.x + sx*tx, entity.location.y + sy*ty);
+            Vector2f newLoc = new Vector2f(entity.location.x + sx * tx, entity.location.y + sy * ty);
             if (canOccupy(entity, newLoc)) {
                 break;
             }
             ty -= 0.1;
         } while (ty > 0);
 
-        entity.location = new Vector2f(entity.location.x + sx*tx, entity.location.y + sy*ty);
+        entity.location = new Vector2f(entity.location.x + sx * tx, entity.location.y + sy * ty);
     }
 
     private static class EntityComparator implements Comparator<Entity> {
