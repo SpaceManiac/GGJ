@@ -1,12 +1,17 @@
 package com.platymuus.ggj15.game;
 
+import com.platymuus.jsc.Hacks;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
 
 public class Follower extends Entity {
 
-    public Follower() {
+    private final Entity target;
+
+    public Follower(Entity target) {
+        this.target = target;
+
         location = new Vector2f((float) (Math.random() * 200) - 100, (float) (Math.random() * 200) - 100);
 
         RectangleShape shape = new RectangleShape(new Vector2f(20, 20));
@@ -17,35 +22,12 @@ public class Follower extends Entity {
 
     @Override
     public void update() {
-        float velX = 0, velY = 0;
-
-        for (Entity entity : world.entities) {
-            if (!(entity instanceof Player || entity instanceof Follower) || entity == this) {
-                continue;
-            }
-
-            Vector2f offset = Vector2f.sub(entity.location, location);
-            double dist = Math.sqrt(offset.x * offset.x + offset.y * offset.y);
-
-            double speed = speedFunc(dist);
-            double angle = Math.atan2(offset.y, offset.x);
-            velX += speed * Math.cos(angle);
-            velY += speed * Math.sin(angle);
+        Vector2f delta = Vector2f.sub(location, target.location);
+        float mag = Hacks.dist(delta);
+        if (mag > 40) {
+            delta = Vector2f.mul(delta, 40 / mag);
+            location = Vector2f.add(target.location, delta);
         }
-
-        location = new Vector2f(location.x + velX, location.y + velY);
-
-        /*
-        double mag = Math.sqrt(offset.x * offset.x + offset.y * offset.y);
-        float factor = 1;
-        if (mag > 1) {
-            factor = (float) (1 / mag);
-        }
-        if (mag < 50) {
-            factor = 0;
-        }
-        location = Vector2f.add(location, Vector2f.mul(offset, factor));
-        */
     }
 
     private double speedFunc(double dist) {

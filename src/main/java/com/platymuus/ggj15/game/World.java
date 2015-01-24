@@ -27,8 +27,10 @@ public class World implements Drawable {
         entities.add(player);
         entities.add(new Obelisk());
 
-        for (int i = 0; i < 10; ++i) {
-            entities.add(new Follower());
+        Entity last = player;
+        for (int i = 0; i < 4; ++i) {
+            last = new Follower(last);
+            entities.add(last);
         }
 
         for (int i = 0; i < 100; ++i) {
