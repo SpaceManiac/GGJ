@@ -40,7 +40,7 @@ public class Obelisk extends Interactable {
 
     @Override
     public void interact() {
-        world.fate = "an obeliskish";
+        world.fate = "a world-ending";
     }
 
     @Override
