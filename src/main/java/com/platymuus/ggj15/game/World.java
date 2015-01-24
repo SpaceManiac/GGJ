@@ -3,6 +3,8 @@ package com.platymuus.ggj15.game;
 import com.platymuus.ggj15.Resources;
 import org.jsfml.graphics.*;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,8 +20,17 @@ public class World implements Drawable {
 
     public World() {
         sprite = Resources.getSprite("game/sand.png");
+
         entities.add(player);
         entities.add(new Obelisk());
+
+        for (int i = 0; i < 10; ++i) {
+            entities.add(new Follower());
+        }
+
+        for (int i = 0; i < 100; ++i) {
+            entities.add(new Rock());
+        }
     }
 
     public Player getPlayer() {
@@ -42,8 +53,18 @@ public class World implements Drawable {
                 sprite.draw(renderTarget, renderStates);
             }
         }
+        Collections.sort(entities, EntityComparator.instance);
         for (Entity entity : entities) {
             entity.draw(renderTarget, renderStates);
+        }
+    }
+
+    private static class EntityComparator implements Comparator<Entity> {
+        private static final EntityComparator instance = new EntityComparator();
+
+        @Override
+        public int compare(Entity o1, Entity o2) {
+            return Float.compare(o1.location.y, o2.location.y);
         }
     }
 }

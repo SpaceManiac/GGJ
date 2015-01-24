@@ -7,7 +7,7 @@ import org.jsfml.system.Vector2f;
 public class Follower extends Entity {
 
     public Follower() {
-        location = new Vector2f((float) (Math.random() * 200), (float) (Math.random() * 200));
+        location = new Vector2f((float) (Math.random() * 200) - 100, (float) (Math.random() * 200) - 100);
 
         RectangleShape shape = new RectangleShape(new Vector2f(20, 20));
         shape.setFillColor(Color.RED);
@@ -20,8 +20,9 @@ public class Follower extends Entity {
         float velX = 0, velY = 0;
 
         for (Entity entity : world.entities) {
-            if (entity == this) continue;
-            if (entity instanceof Obelisk) continue;
+            if (!(entity instanceof Player || entity instanceof Follower) || entity == this) {
+                continue;
+            }
 
             Vector2f offset = Vector2f.sub(entity.location, location);
             double dist = Math.sqrt(offset.x * offset.x + offset.y * offset.y);
@@ -53,8 +54,8 @@ public class Follower extends Entity {
         double fac = Math.abs(dist - D) / D;
         if (fac > 8) {
             fac = 0;
-        } else if (fac > 4) {
-            fac = 4;
+        } else if (fac > 5) {
+            fac = 5;
         }
         return fac * direction;
     }

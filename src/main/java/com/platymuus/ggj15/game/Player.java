@@ -11,6 +11,8 @@ import org.jsfml.window.Keyboard;
  */
 public class Player extends Entity {
 
+    private boolean aHeld;
+
     public Player() {
         RectangleShape shape = new RectangleShape(new Vector2f(20, 20));
         shape.setFillColor(Color.BLUE);
@@ -37,7 +39,7 @@ public class Player extends Entity {
             y += adjust(jy);
         }
 
-        final int spd = 4;
+        final float spd = 2.f;
         location = new Vector2f(location.x + spd * x, location.y + spd * y);
     }
 

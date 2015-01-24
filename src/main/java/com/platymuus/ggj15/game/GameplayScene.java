@@ -19,23 +19,19 @@ public class GameplayScene extends Scene {
     private BlackFade fade;
 
     private World world;
-
     private View worldView;
+
+    private float zoom = 1;
 
     @Override
     public void initialize() throws Exception {
         runner.window.setKeyRepeatEnabled(false);
 
         world = new World();
-
         worldView = new View(Vector2f.ZERO, new Vector2f(runner.screenSize));
 
         fade = new BlackFade();
         fade.fadeIn();
-
-        for (int i = 0; i < 10; ++i) {
-            world.entities.add(new Follower());
-        }
     }
 
     @Override
@@ -44,6 +40,20 @@ public class GameplayScene extends Scene {
             case KEY_PRESSED:
                 if (event.asKeyEvent().key == Keyboard.Key.ESCAPE) {
                     done = true;
+                }
+                break;
+            case JOYSTICK_BUTTON_PRESSED:
+                int button = event.asJoystickButtonEvent().button;
+                switch (button) {
+                    case XboxButtons.BACK:
+                        world = new World();
+                        break;
+                    case XboxButtons.LB:
+                        zoom /= 2;
+                        break;
+                    case XboxButtons.RB:
+                        zoom *= 2;
+                        break;
                 }
                 break;
         }
@@ -66,7 +76,12 @@ public class GameplayScene extends Scene {
         }
 
         world.update();
+        worldView.setSize(Vector2f.mul(new Vector2f(runner.screenSize), zoom));
         worldView.setCenter(world.getPlayer().location);
+
+        runner.debug("zoom: " + 1/zoom + "\n" +
+        "team: \n" +
+        " - nobody");
     }
 
     @Override
