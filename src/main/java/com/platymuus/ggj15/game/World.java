@@ -14,9 +14,12 @@ import java.util.List;
 public class World implements Drawable {
 
     public final List<Entity> entities = new LinkedList<>();
+    private final List<Entity> removeEntities = new LinkedList<>();
 
     private Sprite sprite;
     private Player player = new Player();
+
+    public int landmarks, totalLandmarks;
 
     public World() {
         sprite = Resources.getSprite("game/sand.png");
@@ -31,6 +34,12 @@ public class World implements Drawable {
         for (int i = 0; i < 100; ++i) {
             entities.add(new Rock());
         }
+
+        landmarks = 0;
+        totalLandmarks = 10;
+        for (int i = 0; i < totalLandmarks; ++i) {
+            entities.add(new Landmark());
+        }
     }
 
     public Player getPlayer() {
@@ -42,6 +51,9 @@ public class World implements Drawable {
             entity.world = this;
             entity.update();
         }
+
+        entities.removeAll(removeEntities);
+        removeEntities.clear();
     }
 
     @Override
@@ -57,6 +69,10 @@ public class World implements Drawable {
         for (Entity entity : entities) {
             entity.draw(renderTarget, renderStates);
         }
+    }
+
+    public void remove(Entity entity) {
+        removeEntities.add(entity);
     }
 
     private static class EntityComparator implements Comparator<Entity> {

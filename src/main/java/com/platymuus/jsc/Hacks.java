@@ -108,4 +108,12 @@ public final class Hacks {
         FloatRect localBounds = text.getLocalBounds();
         text.setOrigin(localBounds.width / 2, 0);
     }
+
+    public static Color multiply(Color color, float f) {
+        return new Color(
+                (int) (color.r * f),
+                (int) (color.g * f),
+                (int) (color.b * f),
+                color.a);
+    }
 }
