@@ -6,15 +6,15 @@ import org.jsfml.system.Vector2f;
 import org.jsfml.system.Vector2i;
 
 /**
- * Todo: Javadoc for StarField.
+ * Simple unlimited scrolling background.
  */
-public class StarField implements Drawable {
+public class Dunes implements Drawable {
 
     private final Sprite sprite;
     private final Vector2i size;
 
-    public StarField() {
-        sprite = Resources.getSprite("game/stars.png");
+    public Dunes() {
+        sprite = Resources.getSprite("game/sand.png");
         size = sprite.getTexture().getSize();
     }
 
@@ -28,8 +28,8 @@ public class StarField implements Drawable {
 
         target.setView(new View(center, view.getSize()));
         doDraw(target, states);
-        target.setView(new View(center, Vector2f.mul(view.getSize(), 2)));
-        doDraw(target, states);
+        /*target.setView(new View(center, Vector2f.mul(view.getSize(), 2)));
+        doDraw(target, states);*/
         target.setView(view);
     }
 

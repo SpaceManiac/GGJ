@@ -17,7 +17,7 @@ public class GameplayScene extends Scene {
 
     private BlackFade fade;
 
-    private StarField stars;
+    private Dunes stars;
     private World world;
     private View worldView;
 
@@ -29,7 +29,7 @@ public class GameplayScene extends Scene {
     public void initialize() throws Exception {
         runner.window.setKeyRepeatEnabled(false);
 
-        stars = new StarField();
+        stars = new Dunes();
         world = new World();
         worldView = new View(Vector2f.ZERO, new Vector2f(runner.screenSize));
         paused = false;
