@@ -17,7 +17,7 @@ import org.jsfml.window.event.Event;
  */
 public class TitleScene extends Scene {
 
-    public static final String TITLE = "Science vs Demons";
+    public static final String TITLE = "Game Jam 2015";
 
     private Text titleText;
     private Text beginText;

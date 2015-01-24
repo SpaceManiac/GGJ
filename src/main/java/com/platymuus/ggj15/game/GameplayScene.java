@@ -8,6 +8,7 @@ import org.jsfml.graphics.RenderTarget;
 import org.jsfml.graphics.View;
 import org.jsfml.system.Vector2f;
 import org.jsfml.system.Vector2i;
+import org.jsfml.window.Keyboard;
 import org.jsfml.window.event.Event;
 
 /**
@@ -17,21 +18,36 @@ public class GameplayScene extends Scene {
 
     private BlackFade fade;
 
-    private int turn;
+    private World world;
+    private Player player;
+
+    private View worldView;
 
     @Override
     public void initialize() throws Exception {
         runner.window.setKeyRepeatEnabled(false);
 
+        player = new Player();
+        world = new World();
+        world.entities.add(player);
+
+        worldView = new View(Vector2f.ZERO, new Vector2f(runner.screenSize));
+
         fade = new BlackFade();
         fade.fadeIn();
+
+        for (int i = 0; i < 10; ++i) {
+            world.entities.add(new Follower());
+        }
     }
 
     @Override
     public void handleEvent(Event event) {
         switch (event.type) {
             case KEY_PRESSED:
-                done = true;
+                if (event.asKeyEvent().key == Keyboard.Key.ESCAPE) {
+                    done = true;
+                }
                 break;
         }
     }
@@ -51,6 +67,9 @@ public class GameplayScene extends Scene {
         if (fade.update()) {
             done = true;
         }
+
+        world.update();
+        worldView.setCenter(player.location);
     }
 
     @Override
@@ -64,6 +83,9 @@ public class GameplayScene extends Scene {
         // user interface
         target.setView(uiView);
         target.draw(intface);*/
+
+        target.setView(worldView);
+        target.draw(world);
 
         // overlay
         target.setView(Hacks.getDefaultView(target));

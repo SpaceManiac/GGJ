@@ -1,10 +1,7 @@
 package com.platymuus.jsc;
 
 import com.platymuus.ggj15.LogWrapper;
-import org.jsfml.graphics.ConstView;
-import org.jsfml.graphics.FloatRect;
-import org.jsfml.graphics.RenderTarget;
-import org.jsfml.graphics.View;
+import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 import org.jsfml.system.Vector2i;
 import org.jsfml.window.Window;
@@ -99,4 +96,7 @@ public final class Hacks {
                 (int) Math.floor((double)vec.y / factor));
     }
 
+    public static RenderStates offset(RenderStates states, Vector2f offset) {
+        return new RenderStates(states, Transform.translate(states.transform, offset));
+    }
 }
