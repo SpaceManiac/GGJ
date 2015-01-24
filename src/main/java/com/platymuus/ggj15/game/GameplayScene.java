@@ -8,7 +8,6 @@ import org.jsfml.graphics.RenderTarget;
 import org.jsfml.graphics.View;
 import org.jsfml.system.Vector2f;
 import org.jsfml.system.Vector2i;
-import org.jsfml.window.Keyboard;
 import org.jsfml.window.event.Event;
 
 /**
@@ -18,17 +17,22 @@ public class GameplayScene extends Scene {
 
     private BlackFade fade;
 
+    private StarField stars;
     private World world;
     private View worldView;
 
     private float zoom = 1;
 
+    private boolean paused;
+
     @Override
     public void initialize() throws Exception {
         runner.window.setKeyRepeatEnabled(false);
 
+        stars = new StarField();
         world = new World();
         worldView = new View(Vector2f.ZERO, new Vector2f(runner.screenSize));
+        paused = false;
 
         fade = new BlackFade();
         fade.fadeIn();
@@ -38,23 +42,32 @@ public class GameplayScene extends Scene {
     public void handleEvent(Event event) {
         switch (event.type) {
             case KEY_PRESSED:
-                if (event.asKeyEvent().key == Keyboard.Key.ESCAPE) {
-                    done = true;
-                }
+                doControl(Control.get(event.asKeyEvent().key));
                 break;
             case JOYSTICK_BUTTON_PRESSED:
-                int button = event.asJoystickButtonEvent().button;
-                switch (button) {
-                    case XboxButtons.BACK:
-                        world = new World();
-                        break;
-                    case XboxButtons.LB:
-                        zoom /= 2;
-                        break;
-                    case XboxButtons.RB:
-                        zoom *= 2;
-                        break;
-                }
+                doControl(Control.get(event.asJoystickButtonEvent().button));
+                break;
+        }
+    }
+
+    private void doControl(Control control) {
+        if (control == null) return;
+        switch (control) {
+            case ACTION:
+                break;
+            case ALTERNATE:
+                break;
+            case PAUSE:
+                paused = !paused;
+                break;
+            case ZOOM_IN:
+                zoom /= 2;
+                break;
+            case ZOOM_OUT:
+                zoom *= 2;
+                break;
+            case RESTART:
+                world = new World();
                 break;
         }
     }
@@ -75,7 +88,9 @@ public class GameplayScene extends Scene {
             done = true;
         }
 
-        world.update();
+        if (!paused) {
+            world.update();
+        }
         worldView.setSize(Vector2f.mul(new Vector2f(runner.screenSize), zoom));
         worldView.setCenter(world.getPlayer().location);
 
@@ -95,6 +110,7 @@ public class GameplayScene extends Scene {
         target.draw(intface);*/
 
         target.setView(worldView);
+        target.draw(stars);
         target.draw(world);
 
         // overlay

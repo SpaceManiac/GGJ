@@ -18,7 +18,6 @@ public class World implements Drawable {
     public final List<Entity> entities = new LinkedList<>();
     private final List<Entity> removeEntities = new LinkedList<>();
 
-    private Sprite sprite;
     private Player player = new Player();
 
     public int landmarks, totalLandmarks;
@@ -26,8 +25,6 @@ public class World implements Drawable {
     private Sprite island;
 
     public World() {
-        sprite = Resources.getSprite("game/sand.png");
-
         entities.add(player);
         entities.add(new Obelisk());
 
@@ -67,18 +64,11 @@ public class World implements Drawable {
 
     @Override
     public void draw(RenderTarget target, RenderStates states) {
-        ConstTexture tex = sprite.getTexture();
-        for (int x = -5; x < 5; ++x) {
-            for (int y = -5; y < 5; ++y) {
-                sprite.setPosition(x * tex.getSize().x, y * tex.getSize().y);
-                sprite.draw(target, states);
-            }
-        }
-
         target.draw(island);
 
         Collections.sort(entities, EntityComparator.instance);
         for (Entity entity : entities) {
+            entity.world = this;
             entity.draw(target, states);
         }
     }

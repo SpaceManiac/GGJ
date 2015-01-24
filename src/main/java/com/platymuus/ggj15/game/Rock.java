@@ -14,7 +14,7 @@ public class Rock extends Entity {
         location = new Vector2f(random(), random());
 
         RectangleShape shape = new RectangleShape(new Vector2f(30, 30));
-        shape.setFillColor(Math.random() > 0.5 ? Color.BLACK : new Color(128, 128, 128));
+        shape.setFillColor(Math.random() > 0.5 ? new Color(192, 192, 192) : new Color(128, 128, 128));
         shape.setOrigin(15, 15);
         drawable = shape;
 

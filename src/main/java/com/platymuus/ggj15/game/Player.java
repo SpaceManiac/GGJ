@@ -38,7 +38,7 @@ public class Player extends Entity {
         float x = left && !right ? -1 : right && !left ? 1 : 0;
         float y = up && !down ? -1 : down && !up ? 1 : 0;
 
-        boolean aHeld = false;
+        boolean aHeld = false, fastCheat = false;
         Joystick.update();
         for (int j = 0; j < Joystick.JOYSTICK_COUNT; ++j) {
             if (!Joystick.isConnected(j)) continue;
@@ -49,10 +49,12 @@ public class Player extends Entity {
             y += adjust(jy);
 
             aHeld |= Joystick.isButtonPressed(j, XboxButtons.A);
+            fastCheat |= Joystick.isButtonPressed(j, XboxButtons.X);
         }
 
         // move
         float spd = 2.f;
+        if (fastCheat) spd *= 5;
         world.collideTranslate(this, new Vector2f(spd * x, spd * y));
 
         // search for interactable thing
