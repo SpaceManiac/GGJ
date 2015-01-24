@@ -1,3 +1,11 @@
+# idea
 .idea/
 *.iml
-build/
+.gradle/
+/build/
+
+# eclipse
+/bin/
+/.settings/
+.classpath
+.project

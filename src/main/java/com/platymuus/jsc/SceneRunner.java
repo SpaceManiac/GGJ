@@ -1,10 +1,11 @@
 package com.platymuus.jsc;
 
-import com.platymuus.colonize.Resources;
+import com.platymuus.ggj15.Resources;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Clock;
 import org.jsfml.system.Vector2f;
 import org.jsfml.system.Vector2i;
+import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
 
 /**
@@ -18,8 +19,8 @@ public class SceneRunner {
 
     // Properties accessible by scenes
     public final RenderWindow window;
-    public final Vector2i screenSize;
-    public final Vector2i screenCenter;
+    public Vector2i screenSize;
+    public Vector2i screenCenter;
 
     // Internal properties
     private boolean windowClosed = false;
@@ -68,6 +69,14 @@ public class SceneRunner {
         debug.setString(string);
         FloatRect localBounds = debug.getLocalBounds();
         debugRect.setSize(new Vector2f(localBounds.width, 2 * localBounds.height));
+    }
+
+    /**
+     * Get the mouse position relative to the attached window.
+     * @return the mouse position
+     */
+    public Vector2i getMouse() {
+        return Mouse.getPosition(window);
     }
 
     /**
@@ -121,6 +130,8 @@ public class SceneRunner {
             window.clear();
             scene.render(window);
             if (!windowFocused) {
+                shade.setSize(new Vector2f(screenSize));
+                warning.setPosition(screenCenter.x, 50);
                 window.draw(shade);
                 window.draw(warning);
             }
@@ -147,6 +158,10 @@ public class SceneRunner {
                 break;
             case GAINED_FOCUS:
                 windowFocused = true;
+                break;
+            case RESIZED:
+                screenSize = window.getSize();
+                screenCenter = Vector2i.div(screenSize, 2);
                 break;
         }
     }

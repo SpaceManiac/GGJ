@@ -1,6 +1,6 @@
 package com.platymuus.jsc.gui;
 
-import com.platymuus.colonize.Resources;
+import com.platymuus.ggj15.Resources;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.Sprite;

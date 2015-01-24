@@ -2,7 +2,6 @@ package com.platymuus.jsc.gui;
 
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
-import org.jsfml.system.Vector2i;
 
 /**
  * A simple fade to/from black transition.
@@ -16,19 +15,17 @@ public class BlackFade implements Drawable {
 
     /**
      * Create a new fade lasting a default time.
-     * @param size The screen size.
      */
-    public BlackFade(Vector2i size) {
-        this(size, 40);
+    public BlackFade() {
+        this(40);
     }
 
     /**
      * Create a new fade lasting the given time.
-     * @param size The screen size.
      * @param length The fade time.
      */
-    public BlackFade(Vector2i size, int length) {
-        shape = new RectangleShape(new Vector2f(size));
+    public BlackFade(int length) {
+        shape = new RectangleShape();
         this.length = length;
     }
 
@@ -73,6 +70,10 @@ public class BlackFade implements Drawable {
 
     @Override
     public void draw(RenderTarget target, RenderStates states) {
+        Vector2f size = target.getView().getSize();
+        shape.setSize(size);
+        shape.setPosition(target.getView().getCenter());
+        shape.setOrigin(Vector2f.div(size, 2));
         shape.setFillColor(new Color(0, 0, 0, 255 * Math.abs(time) / (length - 5)));
         shape.draw(target, states);
     }
