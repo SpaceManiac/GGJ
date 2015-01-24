@@ -1,7 +1,7 @@
 package com.platymuus.ggj15.game;
 
 import com.platymuus.ggj15.Resources;
-import com.platymuus.jsc.Hacks;
+import com.platymuus.jsc.BoundsHandler;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
@@ -25,6 +25,8 @@ public class World implements Drawable {
     private Sprite island;
 
     public boolean controllerMode;
+
+    public String fate;
 
     public World() {
         entities.add(player);
@@ -50,7 +52,7 @@ public class World implements Drawable {
         }
 
         island = Resources.getSprite("game/island-half.png");
-        Hacks.center(island);
+        BoundsHandler.of(island).center();
     }
 
     public Player getPlayer() {
@@ -60,6 +62,8 @@ public class World implements Drawable {
     public void update() {
         for (Entity entity : entities) {
             entity.world = this;
+        }
+        for (Entity entity : entities) {
             entity.update();
         }
 

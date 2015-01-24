@@ -25,7 +25,7 @@ public class Landmark extends Interactable {
 
     @Override
     public String getInteractText() {
-        return "Pick up Item";
+        return "Discover location";
     }
 
     @Override

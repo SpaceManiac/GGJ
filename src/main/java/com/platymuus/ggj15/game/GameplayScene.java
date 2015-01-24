@@ -1,5 +1,6 @@
 package com.platymuus.ggj15.game;
 
+import com.platymuus.ggj15.GameOverScene;
 import com.platymuus.jsc.Hacks;
 import com.platymuus.jsc.Scene;
 import com.platymuus.jsc.gui.BlackFade;
@@ -55,12 +56,9 @@ public class GameplayScene extends Scene {
     private void doControl(Control control) {
         if (control == null) return;
         switch (control) {
-            case ACTION:
-                break;
-            case ALTERNATE:
-                break;
             case PAUSE:
-                paused = !paused;
+                //paused = !paused;
+                fade.fadeOut();
                 break;
             case ZOOM_IN:
                 zoom /= 2;
@@ -93,10 +91,20 @@ public class GameplayScene extends Scene {
         if (!paused) {
             world.update();
         }
+        if (world.fate != null) {
+            fade.fadeOut();
+        }
         worldView.setSize(Vector2f.mul(new Vector2f(runner.screenSize), zoom));
         worldView.setCenter(world.getPlayer().location);
 
         runner.debug("zoom: " + 1 / zoom);
+    }
+
+    @Override
+    public void finish() {
+        if (world.fate != null) {
+            runner.play(new GameOverScene(world.fate));
+        }
     }
 
     @Override

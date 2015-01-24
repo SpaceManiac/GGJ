@@ -104,11 +104,6 @@ public final class Hacks {
         return (float) Math.sqrt(vec.x * vec.x + vec.y * vec.y);
     }
 
-    public static void hCenter(Text text) {
-        FloatRect localBounds = text.getLocalBounds();
-        text.setOrigin(localBounds.width / 2, 0);
-    }
-
     public static Color multiply(Color color, float f) {
         return new Color(
                 (int) (color.r * f),
@@ -117,8 +112,4 @@ public final class Hacks {
                 color.a);
     }
 
-    public static void center(Sprite sprite) {
-        FloatRect localBounds = sprite.getLocalBounds();
-        sprite.setOrigin(localBounds.width / 2, localBounds.height / 2);
-    }
 }

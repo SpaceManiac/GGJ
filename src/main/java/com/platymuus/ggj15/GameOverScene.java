@@ -1,34 +1,34 @@
 package com.platymuus.ggj15;
 
-import com.platymuus.ggj15.game.GameplayScene;
 import com.platymuus.jsc.Hacks;
 import com.platymuus.jsc.Scene;
 import com.platymuus.jsc.gui.BlackFade;
 import org.jsfml.graphics.RenderTarget;
 import org.jsfml.graphics.Text;
-import org.jsfml.window.Keyboard;
 import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
 
 /**
- * Simple title screen.
+ * Game-over scene.
  */
-public class TitleScene extends Scene {
+public class GameOverScene extends Scene {
 
-    public static final String TITLE = "To Do in the Desert";
+    private String fate;
 
     private Text titleText;
     private Text beginText;
     private BlackFade fade;
 
-    private boolean doneOnFade;
+    public GameOverScene(String fate) {
+        this.fate = fate;
+    }
 
     @Override
     public void initialize() throws Exception {
-        titleText = new Text(TITLE, Resources.FONT_TITLE, 60);
+        titleText = new Text("You've met " + fate + " fate...", Resources.FONT_TITLE, 60);
         center(titleText);
 
-        beginText = new Text("Press any key or click to begin.", Resources.FONT_TEXT, 20);
+        beginText = new Text("but maybe there was something else you could do?", Resources.FONT_TEXT, 20);
         beginText.setPosition(0, -60);
         center(beginText);
 
@@ -41,9 +41,6 @@ public class TitleScene extends Scene {
         switch (event.type) {
             case KEY_PRESSED:
                 fade.fadeOut();
-                if (event.asKeyEvent().key == Keyboard.Key.ESCAPE) {
-                    doneOnFade = true;
-                }
                 break;
             case MOUSE_BUTTON_PRESSED:
                 if (event.asMouseButtonEvent().button == Mouse.Button.LEFT) {
@@ -60,12 +57,7 @@ public class TitleScene extends Scene {
     public void update() {
         // if we're undergoing a transition, keep adding to the value
         if (fade.update()) {
-            if (doneOnFade) {
-                done = true;
-            } else {
-                runner.play(new GameplayScene());
-                fade.fadeIn();
-            }
+            done = true;
         }
 
         // update text position

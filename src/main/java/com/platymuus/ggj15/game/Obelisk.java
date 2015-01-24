@@ -12,6 +12,8 @@ public class Obelisk extends Interactable {
     private RectangleShape shape;
 
     public Obelisk() {
+        location = new Vector2f(0, -50);
+
         shape = new RectangleShape(new Vector2f(30, 100));
         shape.setFillColor(Color.GREEN);
         shape.setOrigin(15, 85);
@@ -22,19 +24,22 @@ public class Obelisk extends Interactable {
 
     @Override
     public boolean isInteractable() {
-        return world != null && world.landmarks == world.totalLandmarks;
+        return world.landmarks == world.totalLandmarks;
     }
 
     @Override
     public String getInteractText() {
-        return "Do Obelisk Things";
+        return "Activate Obelisk";
+    }
+
+    @Override
+    public String getUninteractableText() {
+        return "Discover " + (world.totalLandmarks - world.landmarks) + " more locations...";
     }
 
     @Override
     public void interact() {
-        for (Entity entity : world.entities) {
-            world.remove(entity);
-        }
+        world.fate = "an obelisky";
     }
 
     @Override

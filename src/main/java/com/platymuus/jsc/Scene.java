@@ -64,7 +64,7 @@ public abstract class Scene {
      * @param text The Text to center.
      */
     protected static void center(Text text) {
-        text.setOrigin(text.getLocalBounds().width / 2, 0);
+        BoundsHandler.of(text).centerHorizontally();
     }
 
 }

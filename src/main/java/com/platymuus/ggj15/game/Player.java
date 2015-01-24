@@ -57,7 +57,7 @@ public class Player extends Entity {
             if (entity instanceof Interactable) {
                 Vector2f delta = Vector2f.sub(entity.location, location);
                 Interactable inter = ((Interactable) entity);
-                if (Hacks.dist(delta) < 50 && inter.isInteractable()) {
+                if (Hacks.dist(delta) < 50) {
                     interactable = inter;
                     break;
                 }
@@ -70,7 +70,7 @@ public class Player extends Entity {
         }
         // interact with it if needed
         boolean action = Control.ACTION.held();
-        if (action && !aHeldLast && interactable != null) {
+        if (action && !aHeldLast && interactable != null && interactable.isInteractable()) {
             interactable.interact();
         }
 

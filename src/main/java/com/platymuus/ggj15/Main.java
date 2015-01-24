@@ -1,6 +1,5 @@
 package com.platymuus.ggj15;
 
-import com.platymuus.ggj15.game.GameplayScene;
 import com.platymuus.jsc.SceneRunner;
 import org.jsfml.graphics.RenderWindow;
 import org.jsfml.window.ContextSettings;
@@ -48,7 +47,7 @@ public class Main {
         // Apply icon
 
         // Launch application
-        new SceneRunner(window).play(new GameplayScene());
+        new SceneRunner(window).play(new TitleScene());
 
         // Clean up & exit
         window.close();

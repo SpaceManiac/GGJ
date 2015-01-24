@@ -1,5 +1,6 @@
 package com.platymuus.ggj15.game;
 
+import com.platymuus.jsc.BoundsHandler;
 import com.platymuus.jsc.Hacks;
 import com.platymuus.jsc.gui.OutlinedText;
 import org.jsfml.graphics.RenderStates;
@@ -26,11 +27,19 @@ public abstract class Interactable extends Entity {
 
     public abstract void interact();
 
+    public String getUninteractableText() {
+        return "";
+    }
+
     public void setActive(boolean active) {
         this.active = active;
         if (active) {
-            interactText.setString("(" + Control.ACTION.describe(world.controllerMode) + ") " + getInteractText());
-            Hacks.hCenter(interactText);
+            if (isInteractable()) {
+                interactText.setString("(" + Control.ACTION.describe(world.controllerMode) + ") " + getInteractText());
+            } else {
+                interactText.setString(getUninteractableText());
+            }
+            BoundsHandler.of(interactText).centerHorizontally();
         } else {
             interactText.setString("");
         }
