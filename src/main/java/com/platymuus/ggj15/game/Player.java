@@ -11,12 +11,11 @@ import org.jsfml.window.Keyboard;
  */
 public class Player extends Entity {
 
-    private RectangleShape shape;
-
     public Player() {
-        shape = new RectangleShape(new Vector2f(20, 20));
+        RectangleShape shape = new RectangleShape(new Vector2f(20, 20));
         shape.setFillColor(Color.BLUE);
-        child = shape;
+        shape.setOrigin(10, 10);
+        drawable = shape;
     }
 
     @Override
@@ -38,7 +37,7 @@ public class Player extends Entity {
             down |= y > 50;
         }
 
-        final int spd = 3;
+        final int spd = 4;
         if (left && !right) {
             location = new Vector2f(location.x - spd, location.y);
         } else if (right && !left) {

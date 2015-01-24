@@ -19,7 +19,6 @@ public class GameplayScene extends Scene {
     private BlackFade fade;
 
     private World world;
-    private Player player;
 
     private View worldView;
 
@@ -27,9 +26,7 @@ public class GameplayScene extends Scene {
     public void initialize() throws Exception {
         runner.window.setKeyRepeatEnabled(false);
 
-        player = new Player();
         world = new World();
-        world.entities.add(player);
 
         worldView = new View(Vector2f.ZERO, new Vector2f(runner.screenSize));
 
@@ -69,7 +66,7 @@ public class GameplayScene extends Scene {
         }
 
         world.update();
-        worldView.setCenter(player.location);
+        worldView.setCenter(world.getPlayer().location);
     }
 
     @Override

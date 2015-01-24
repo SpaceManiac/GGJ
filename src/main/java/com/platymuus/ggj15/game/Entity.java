@@ -12,7 +12,8 @@ import org.jsfml.system.Vector2f;
 public class Entity implements Drawable {
 
     public Vector2f location = Vector2f.ZERO;
-    protected Drawable child;
+    protected World world;
+    protected Drawable drawable;
 
     public void update() {
 
@@ -20,8 +21,8 @@ public class Entity implements Drawable {
 
     @Override
     public void draw(RenderTarget renderTarget, RenderStates renderStates) {
-        if (child != null) {
-            child.draw(renderTarget, Hacks.offset(renderStates, location));
+        if (drawable != null) {
+            drawable.draw(renderTarget, Hacks.offset(renderStates, location));
         }
     }
 }
