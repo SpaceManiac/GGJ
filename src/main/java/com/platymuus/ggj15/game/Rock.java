@@ -32,7 +32,7 @@ public class Rock extends Entity {
     public Rock() {
         do {
             location = new Vector2f(random(), random());
-        } while (Hacks.dist(location) < 200);
+        } while (Hacks.dist(location) < 500);
 
         int random = (int) (Math.random() * NAMES.length);
         Sprite sprite = Resources.getSprite("game/" + NAMES[random] + ".png");

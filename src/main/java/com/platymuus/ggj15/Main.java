@@ -16,7 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Desire OpenGL 3.0
-        ContextSettings settings = new ContextSettings(3, 0, 8);
+        ContextSettings settings = new ContextSettings(8, 3, 0);
 
         // Detect what resolution to use
         VideoMode current = VideoMode.getDesktopMode();
@@ -43,6 +43,8 @@ public class Main {
                 TitleScene.TITLE,
                 WindowStyle.DEFAULT,
                 settings);
+        System.out.println("Want: " + settings);
+        System.out.println("Got:  " + window.getSettings());
 
         // Apply icon
 

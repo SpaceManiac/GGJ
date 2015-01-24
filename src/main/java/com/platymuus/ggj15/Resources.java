@@ -118,6 +118,7 @@ public final class Resources {
         Texture tex = new Texture();
         try (InputStream in = open(path)) {
             tex.loadFromStream(in);
+            tex.setSmooth(true);
             textures.put(path, tex);
         } catch (IOException e) {
             log.error("failed to load texture: " + path, e);

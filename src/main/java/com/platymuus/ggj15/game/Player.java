@@ -42,8 +42,20 @@ public class Player extends Entity {
         for (int j = 0; j < Joystick.JOYSTICK_COUNT; ++j) {
             if (!Joystick.isConnected(j)) continue;
 
-            x += adjust(Joystick.getAxisPosition(j, Joystick.Axis.X));
-            y += adjust(Joystick.getAxisPosition(j, Joystick.Axis.Y));
+            float dx = adjust(Joystick.getAxisPosition(j, Joystick.Axis.X));
+            float dy = adjust(Joystick.getAxisPosition(j, Joystick.Axis.Y));
+            x += dx;
+            y += dy;
+            if (dx != 0 || dy != 0) {
+                world.controllerMode = true;
+            }
+        }
+
+        // limit to 1
+        float mag = (float) Math.sqrt(x * x + y * y);
+        if (mag > 1) {
+            x /= mag;
+            y /= mag;
         }
 
         // apply movement
@@ -87,11 +99,12 @@ public class Player extends Entity {
             return Math.signum(v) * (1 / .7f) * (Math.abs(v) - 0.3f);
         }
     }
-    
-    public boolean getFollow(){
-    	return follow;
+
+    public boolean getFollow() {
+        return follow;
     }
-    public void toggleFollow(){
-    	follow = !follow;
+
+    public void toggleFollow() {
+        follow = !follow;
     }
 }
