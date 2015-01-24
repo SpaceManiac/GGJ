@@ -50,6 +50,10 @@ public class World implements Drawable {
         for (int i = 0; i < 5; ++i) {
             entities.add(new Clue("This is clue # " + i));
         }
+       
+       for( int i = 0; i < 2; ++i){
+    	   entities.add(new FollowerDropOff());
+       }
 
         island = Resources.getSprite("game/island-half.png");
         BoundsHandler.of(island).center();

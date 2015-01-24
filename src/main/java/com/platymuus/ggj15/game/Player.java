@@ -12,7 +12,7 @@ import org.jsfml.window.Joystick;
  */
 public class Player extends Entity {
 
-    private boolean aHeldLast;
+    private boolean aHeldLast, follow = true;
 
     private Interactable prevInteractable;
 
@@ -86,5 +86,12 @@ public class Player extends Entity {
         } else {
             return Math.signum(v) * (1 / .7f) * (Math.abs(v) - 0.3f);
         }
+    }
+    
+    public boolean getFollow(){
+    	return follow;
+    }
+    public void toggleFollow(){
+    	follow = !follow;
     }
 }

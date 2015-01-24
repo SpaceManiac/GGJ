@@ -24,7 +24,7 @@ public class Follower extends Entity {
     public void update() {
         Vector2f delta = Vector2f.sub(location, target.location);
         float mag = Hacks.dist(delta);
-        if (mag > 30) {
+        if (world.getPlayer().getFollow() && mag > 30) {
             delta = Vector2f.mul(delta, 30 / mag);
             location = Vector2f.add(target.location, delta);
         }
