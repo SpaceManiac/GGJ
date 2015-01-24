@@ -45,6 +45,9 @@ public class World implements Drawable {
         for (int i = 0; i < totalLandmarks; ++i) {
             entities.add(new Landmark());
         }
+       for( int i = 0; i < 5; ++i){
+        	entities.add(new Clue("This is clue # " + i));
+        }
 
         island = Resources.getSprite("game/island-half.png");
         Hacks.center(island);
