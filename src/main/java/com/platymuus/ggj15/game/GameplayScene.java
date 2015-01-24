@@ -19,7 +19,7 @@ public class GameplayScene extends Scene {
 
     private BlackFade fade;
 
-    private Background background;
+    private Background background, overlay;
     private World world;
     private View worldView;
 
@@ -31,7 +31,8 @@ public class GameplayScene extends Scene {
     public void initialize() throws Exception {
         runner.window.setKeyRepeatEnabled(false);
 
-        background = new Background();
+        background = new Background("game/blendground.png");
+        overlay = new Background("game/sand.png");
         world = new World();
         worldView = new View(Vector2f.ZERO, new Vector2f(runner.screenSize));
         paused = false;
@@ -124,7 +125,7 @@ public class GameplayScene extends Scene {
         target.draw(background);
         target.draw(world);
         if (world.sand > 0) {
-            background.drawObscuring(time, 2 * world.sand, target, RenderStates.DEFAULT);
+            overlay.drawObscuring(time, 2 * world.sand, target, RenderStates.DEFAULT);
         }
 
         // overlay

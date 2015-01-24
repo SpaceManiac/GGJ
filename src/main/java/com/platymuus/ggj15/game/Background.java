@@ -13,8 +13,8 @@ public class Background implements Drawable {
     private final Sprite sprite;
     private final Vector2i size;
 
-    public Background() {
-        sprite = Resources.getSprite("game/sand.png");
+    public Background(String name) {
+        sprite = Resources.getSprite(name);
         size = sprite.getTexture().getSize();
     }
 
