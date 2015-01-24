@@ -24,29 +24,29 @@ public class Player extends Entity {
         boolean right = Keyboard.isKeyPressed(Keyboard.Key.RIGHT);
         boolean up = Keyboard.isKeyPressed(Keyboard.Key.UP);
         boolean down = Keyboard.isKeyPressed(Keyboard.Key.DOWN);
+        float x = left && !right ? -1 : right && !left ? 1 : 0;
+        float y = up && !down ? -1 : down && !up ? 1 : 0;
 
         Joystick.update();
         for (int j = 0; j < Joystick.JOYSTICK_COUNT; ++j) {
             if (!Joystick.isConnected(j)) continue;
 
-            float x = Joystick.getAxisPosition(j, Joystick.Axis.X);
-            float y = Joystick.getAxisPosition(j, Joystick.Axis.Y);
-            left |= x < -50;
-            right |= x > 50;
-            up |= y < -50;
-            down |= y > 50;
+            float jx = Joystick.getAxisPosition(j, Joystick.Axis.X);
+            float jy = Joystick.getAxisPosition(j, Joystick.Axis.Y);
+            x += adjust(jx);
+            y += adjust(jy);
         }
 
         final int spd = 4;
-        if (left && !right) {
-            location = new Vector2f(location.x - spd, location.y);
-        } else if (right && !left) {
-            location = new Vector2f(location.x + spd, location.y);
-        }
-        if (up && !down) {
-            location = new Vector2f(location.x, location.y - spd);
-        } else if (down && !up) {
-            location = new Vector2f(location.x, location.y + spd);
+        location = new Vector2f(location.x + spd * x, location.y + spd * y);
+    }
+
+    private float adjust(float v) {
+        v /= 100;
+        if (Math.abs(v) < .3) {
+            return 0;
+        } else {
+            return Math.signum(v) * (1 / .7f) * (Math.abs(v) - 0.3f);
         }
     }
 }

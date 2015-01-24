@@ -13,13 +13,13 @@ public class World implements Drawable {
 
     public final List<Entity> entities = new LinkedList<>();
 
-
     private Sprite sprite;
     private Player player = new Player();
 
     public World() {
         sprite = Resources.getSprite("game/sand.png");
         entities.add(player);
+        entities.add(new Obelisk());
     }
 
     public Player getPlayer() {

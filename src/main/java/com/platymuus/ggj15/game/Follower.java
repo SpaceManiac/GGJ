@@ -21,6 +21,7 @@ public class Follower extends Entity {
 
         for (Entity entity : world.entities) {
             if (entity == this) continue;
+            if (entity instanceof Obelisk) continue;
 
             Vector2f offset = Vector2f.sub(entity.location, location);
             double dist = Math.sqrt(offset.x * offset.x + offset.y * offset.y);
@@ -47,8 +48,9 @@ public class Follower extends Entity {
     }
 
     private double speedFunc(double dist) {
-        double direction = (dist < 50) ? -1 : 1;
-        double fac = Math.abs(dist - 50) / 50;
+        final double D = 100;
+        double direction = (dist < D) ? -1 : 1;
+        double fac = Math.abs(dist - D) / D;
         if (fac > 8) {
             fac = 0;
         } else if (fac > 4) {
