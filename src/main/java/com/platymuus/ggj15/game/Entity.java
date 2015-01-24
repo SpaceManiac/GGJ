@@ -1,10 +1,7 @@
 package com.platymuus.ggj15.game;
 
 import com.platymuus.jsc.Hacks;
-import org.jsfml.graphics.Drawable;
-import org.jsfml.graphics.FloatRect;
-import org.jsfml.graphics.RenderStates;
-import org.jsfml.graphics.RenderTarget;
+import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
 /**
@@ -27,5 +24,12 @@ public class Entity implements Drawable {
         if (drawable != null) {
             drawable.draw(renderTarget, Hacks.offset(renderStates, location));
         }
+        /*if (collision != null) {
+            RectangleShape shape = new RectangleShape(new Vector2f(collision.width, collision.height));
+            shape.setPosition(collision.left, collision.top);
+            shape.setOutlineColor(Color.GREEN);
+            shape.setOutlineThickness(1);
+            shape.draw(renderTarget, Hacks.offset(renderStates, location));
+        }*/
     }
 }

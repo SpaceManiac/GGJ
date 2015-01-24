@@ -1,5 +1,7 @@
 package com.platymuus.ggj15.game;
 
+import com.platymuus.ggj15.Resources;
+import com.platymuus.jsc.BoundsHandler;
 import com.platymuus.jsc.Hacks;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
@@ -9,17 +11,16 @@ import org.jsfml.system.Vector2f;
  */
 public class Obelisk extends Interactable {
 
-    private RectangleShape shape;
+    private Sprite sprite;
 
     public Obelisk() {
         location = new Vector2f(0, -50);
 
-        shape = new RectangleShape(new Vector2f(30, 100));
-        shape.setFillColor(Color.GREEN);
-        shape.setOrigin(15, 85);
-        drawable = shape;
+        sprite = Resources.getSprite("game/obelisk.png");
+        BoundsHandler.of(sprite).position(0.5f, 1f);
+        drawable = sprite;
 
-        collision = new FloatRect(-15, -15, 30, 30);
+        collision = new FloatRect(-20, -20, 40, 40);
     }
 
     @Override
@@ -39,12 +40,12 @@ public class Obelisk extends Interactable {
 
     @Override
     public void interact() {
-        world.fate = "an obelisky";
+        world.fate = "an obeliskish";
     }
 
     @Override
     public void draw(RenderTarget renderTarget, RenderStates renderStates) {
-        shape.setFillColor(Hacks.multiply(Color.GREEN, (float) world.landmarks / world.totalLandmarks));
+        sprite.setColor(Hacks.multiply(Color.WHITE, 0.5f + 0.5f * (float) world.landmarks / world.totalLandmarks));
         super.draw(renderTarget, renderStates);
     }
 }

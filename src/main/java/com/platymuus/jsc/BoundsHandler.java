@@ -28,7 +28,7 @@ public abstract class BoundsHandler {
         position(0.5f, 0.5f);
     }
 
-    private void position(float x, float y) {
+    public void position(float x, float y) {
         FloatRect bounds = getLocalBounds();
         getTransformable().setOrigin(bounds.left + x * bounds.width, bounds.top + y * bounds.height);
     }
