@@ -5,10 +5,7 @@ import com.platymuus.jsc.BoundsHandler;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Todo: Javadoc for World.
@@ -33,7 +30,7 @@ public class World implements Drawable {
         entities.add(new Obelisk());
 
         Entity last = player;
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 30; ++i) {
             last = new Follower(last);
             entities.add(last);
         }
@@ -79,8 +76,9 @@ public class World implements Drawable {
     public void draw(RenderTarget target, RenderStates states) {
         target.draw(island);
 
-        Collections.sort(entities, EntityComparator.instance);
-        for (Entity entity : entities) {
+        List<Entity> local = new ArrayList<>(entities);
+        Collections.sort(local, EntityComparator.instance);
+        for (Entity entity : local) {
             entity.world = this;
             entity.draw(target, states);
         }

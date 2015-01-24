@@ -29,16 +29,4 @@ public class Follower extends Entity {
             location = Vector2f.add(target.location, delta);
         }
     }
-
-    private double speedFunc(double dist) {
-        final double D = 100;
-        double direction = (dist < D) ? -1 : 1;
-        double fac = Math.abs(dist - D) / D;
-        if (fac > 8) {
-            fac = 0;
-        } else if (fac > 5) {
-            fac = 5;
-        }
-        return fac * direction;
-    }
 }

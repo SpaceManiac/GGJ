@@ -1,6 +1,5 @@
 package com.platymuus.ggj15.game;
 
-import com.platymuus.jsc.BoundsHandler;
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
@@ -33,7 +32,6 @@ public class Clue extends Interactable {
     @Override
     public void interact() {
         interactText.setString(clueMsg);
-        BoundsHandler.of(interactText).centerHorizontally();
     }
 
 }
