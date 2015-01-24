@@ -1,18 +1,20 @@
 package com.platymuus.ggj15.game;
 
+import com.platymuus.jsc.BoundsHandler;
 import com.platymuus.jsc.Hacks;
+
 import org.jsfml.graphics.Color;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
 
 public class Follower extends Entity {
 
-    private final Entity target;
+    private Entity target;
 
-    public Follower(Entity target) {
-        this.target = target;
-
-        location = new Vector2f(target.location.x + (float) (Math.random() * 100) - 50, target.location.y + 50 + (float) (Math.random() * 50));
+    public Follower(Entity t, Vector2f l) {
+    	target = t;
+    	
+    	location = l;
 
         RectangleShape shape = new RectangleShape(new Vector2f(20, 20));
         shape.setFillColor(Color.RED);
@@ -22,12 +24,14 @@ public class Follower extends Entity {
 
     @Override
     public void update() {
-        Vector2f delta = Vector2f.sub(location, target.location);
-        float mag = Hacks.dist(delta);
-        if (world.getPlayer().getFollow() && mag > 30) {
-            delta = Vector2f.mul(delta, 30 / mag);
-            location = Vector2f.add(target.location, delta);
-        }
+    	if(target != null){
+	        Vector2f delta = Vector2f.sub(location, target.location);
+	        float mag = Hacks.dist(delta);
+	        if (world.getPlayer().getFollow() && mag > 30) {
+	            delta = Vector2f.mul(delta, 30 / mag);
+	            location = Vector2f.add(target.location, delta);
+	        }
+    	}
     }
 
     private double speedFunc(double dist) {
@@ -41,4 +45,6 @@ public class Follower extends Entity {
         }
         return fac * direction;
     }
+    
+	
 }

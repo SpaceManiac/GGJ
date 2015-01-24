@@ -6,6 +6,7 @@ import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
 import org.jsfml.window.Joystick;
+import java.util.ArrayList;
 
 /**
  * Todo: Javadoc for Player.
@@ -13,7 +14,8 @@ import org.jsfml.window.Joystick;
 public class Player extends Entity {
 
     private boolean aHeldLast, follow = true;
-
+    private ArrayList<Follower> followers;
+    
     private Interactable prevInteractable;
 
     public Player() {
@@ -26,6 +28,7 @@ public class Player extends Entity {
         collision = new FloatRect(-10, -10, 20, 20);
 
         drawable = shape;
+        followers = new ArrayList<Follower>();
     }
 
     @Override
@@ -100,6 +103,15 @@ public class Player extends Entity {
         }
     }
 
+    public void addFollower(Follower f){
+    	followers.add(f);
+    }
+    public ArrayList<Follower> getFollowers(){
+    	return followers;
+    }
+    public void clearFollowers(){
+    	followers = new ArrayList<Follower>();
+    }
     public boolean getFollow() {
         return follow;
     }

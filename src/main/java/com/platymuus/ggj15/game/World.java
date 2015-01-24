@@ -2,9 +2,11 @@ package com.platymuus.ggj15.game;
 
 import com.platymuus.ggj15.Resources;
 import com.platymuus.jsc.BoundsHandler;
+
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -32,10 +34,9 @@ public class World implements Drawable {
         entities.add(player);
         entities.add(new Obelisk());
 
-        Entity last = player;
+        //entities.add(new Follower(player, new Vector2f(0,0)));
         for (int i = 0; i < 4; ++i) {
-            last = new Follower(last);
-            entities.add(last);
+            entities.add(new StaticFollower());
         }
 
         for (int i = 0; i < 100; ++i) {
@@ -67,7 +68,7 @@ public class World implements Drawable {
         for (Entity entity : entities) {
             entity.world = this;
         }
-        for (Entity entity : entities) {
+        for (Entity entity : new ArrayList<>(entities)) {
             entity.update();
         }
 
@@ -132,6 +133,10 @@ public class World implements Drawable {
         } while (ty > 0);
 
         entity.location = new Vector2f(entity.location.x + sx * tx, entity.location.y + sy * ty);
+    }
+    
+    public void addEntity(Entity e){
+    	entities.add(e);
     }
 
     private static class EntityComparator implements Comparator<Entity> {
