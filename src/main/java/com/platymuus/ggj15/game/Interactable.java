@@ -29,7 +29,7 @@ public abstract class Interactable extends Entity {
     public void setActive(boolean active) {
         this.active = active;
         if (active) {
-            interactText.setString("(A) " + getInteractText());
+            interactText.setString("(" + Control.ACTION.describe(world.controllerMode) + ") " + getInteractText());
             Hacks.hCenter(interactText);
         } else {
             interactText.setString("");

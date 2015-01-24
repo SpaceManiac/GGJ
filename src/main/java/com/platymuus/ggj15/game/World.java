@@ -24,6 +24,8 @@ public class World implements Drawable {
 
     private Sprite island;
 
+    public boolean controllerMode;
+
     public World() {
         entities.add(player);
         entities.add(new Obelisk());

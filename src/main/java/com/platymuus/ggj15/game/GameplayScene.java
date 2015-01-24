@@ -42,9 +42,11 @@ public class GameplayScene extends Scene {
     public void handleEvent(Event event) {
         switch (event.type) {
             case KEY_PRESSED:
+                world.controllerMode = false;
                 doControl(Control.get(event.asKeyEvent().key));
                 break;
             case JOYSTICK_BUTTON_PRESSED:
+                world.controllerMode = true;
                 doControl(Control.get(event.asJoystickButtonEvent().button));
                 break;
         }
