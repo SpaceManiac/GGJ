@@ -1,5 +1,6 @@
 package com.platymuus.ggj15.game;
 
+import org.jsfml.window.Joystick;
 import org.jsfml.window.Keyboard;
 
 import java.util.EnumMap;
@@ -11,17 +12,46 @@ import java.util.Map;
  */
 public enum Control {
     // normal
-    ACTION,    // xA, kX, kEnter
-    ALTERNATE, // xB, kZ
+    ACTION(Keyboard.Key.SPACE, XboxButtons.A),
+    ALTERNATE(Keyboard.Key.TAB, XboxButtons.B),
     //
-    PAUSE,     // xStart, kEscape
-    //
-    ZOOM_IN,
-    ZOOM_OUT,
-    RESTART;
+    PAUSE(Keyboard.Key.ESCAPE, XboxButtons.START),
+    // cheats
+    ZOOM_IN(Keyboard.Key.ADD, XboxButtons.LB),
+    ZOOM_OUT(Keyboard.Key.SUBTRACT, XboxButtons.RB),
+    RESTART(Keyboard.Key.F1, XboxButtons.BACK),
+    GO_FAST(Keyboard.Key.LSHIFT, XboxButtons.X),
+    // movement
+    UP(Keyboard.Key.UP, -1),
+    DOWN(Keyboard.Key.DOWN, -1),
+    LEFT(Keyboard.Key.LEFT, -1),
+    RIGHT(Keyboard.Key.RIGHT, -1);
 
     private static final Map<Keyboard.Key, Control> keys = new EnumMap<>(Keyboard.Key.class);
     private static final Map<Integer, Control> xbox = new HashMap<>();
+
+    private final Keyboard.Key key;
+    private final int button;
+
+    Control(Keyboard.Key key, int button) {
+        this.key = key;
+        this.button = button;
+    }
+
+    public boolean held() {
+        if (key != null && Keyboard.isKeyPressed(key)) {
+            return true;
+        }
+        if (button < 0) {
+            return false;
+        }
+        for (int j = 0; j < Joystick.JOYSTICK_COUNT; ++j) {
+            if (Joystick.isConnected(j) && Joystick.isButtonPressed(j, button)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static Control get(Keyboard.Key key) {
         return keys.get(key);
@@ -32,21 +62,9 @@ public enum Control {
     }
 
     static {
-        keys.put(Keyboard.Key.X, ACTION);
-        keys.put(Keyboard.Key.Z, ALTERNATE);
-        keys.put(Keyboard.Key.ESCAPE, PAUSE);
-        keys.put(Keyboard.Key.PAUSE, PAUSE);
-
-        keys.put(Keyboard.Key.ADD, ZOOM_IN);
-        keys.put(Keyboard.Key.SUBTRACT, ZOOM_OUT);
-        keys.put(Keyboard.Key.F1, RESTART);
-
-        xbox.put(XboxButtons.A, ACTION);
-        xbox.put(XboxButtons.B, ALTERNATE);
-        xbox.put(XboxButtons.START, PAUSE);
-
-        xbox.put(XboxButtons.BACK, RESTART);
-        xbox.put(XboxButtons.LB, ZOOM_IN);
-        xbox.put(XboxButtons.RB, ZOOM_OUT);
+        for (Control control : values()) {
+            keys.put(control.key, control);
+            xbox.put(control.button, control);
+        }
     }
 }

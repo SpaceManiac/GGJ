@@ -6,7 +6,6 @@ import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
 import org.jsfml.window.Joystick;
-import org.jsfml.window.Keyboard;
 
 /**
  * Todo: Javadoc for Player.
@@ -31,30 +30,25 @@ public class Player extends Entity {
 
     @Override
     public void update() {
-        boolean left = Keyboard.isKeyPressed(Keyboard.Key.LEFT);
-        boolean right = Keyboard.isKeyPressed(Keyboard.Key.RIGHT);
-        boolean up = Keyboard.isKeyPressed(Keyboard.Key.UP);
-        boolean down = Keyboard.isKeyPressed(Keyboard.Key.DOWN);
+        // key-movement handling
+        boolean left = Control.LEFT.held();
+        boolean right = Control.RIGHT.held();
+        boolean up = Control.UP.held();
+        boolean down = Control.DOWN.held();
         float x = left && !right ? -1 : right && !left ? 1 : 0;
         float y = up && !down ? -1 : down && !up ? 1 : 0;
 
-        boolean aHeld = false, fastCheat = false;
-        Joystick.update();
+        // joy-movement handling
         for (int j = 0; j < Joystick.JOYSTICK_COUNT; ++j) {
             if (!Joystick.isConnected(j)) continue;
 
-            float jx = Joystick.getAxisPosition(j, Joystick.Axis.X);
-            float jy = Joystick.getAxisPosition(j, Joystick.Axis.Y);
-            x += adjust(jx);
-            y += adjust(jy);
-
-            aHeld |= Joystick.isButtonPressed(j, XboxButtons.A);
-            fastCheat |= Joystick.isButtonPressed(j, XboxButtons.X);
+            x += adjust(Joystick.getAxisPosition(j, Joystick.Axis.X));
+            y += adjust(Joystick.getAxisPosition(j, Joystick.Axis.Y));
         }
 
-        // move
+        // apply movement
         float spd = 2.f;
-        if (fastCheat) spd *= 5;
+        if (Control.GO_FAST.held()) spd *= 5;
         world.collideTranslate(this, new Vector2f(spd * x, spd * y));
 
         // search for interactable thing
@@ -69,16 +63,19 @@ public class Player extends Entity {
                 }
             }
         }
+        // update its state
         if (interactable != prevInteractable) {
             if (prevInteractable != null) prevInteractable.setActive(false);
             if (interactable != null) interactable.setActive(true);
         }
-        if (aHeld && !aHeldLast && interactable != null) {
+        // interact with it if needed
+        boolean action = Control.ACTION.held();
+        if (action && !aHeldLast && interactable != null) {
             interactable.interact();
         }
 
-        // interact
-        aHeldLast = aHeld;
+        // bookkeeping
+        aHeldLast = action;
         prevInteractable = interactable;
     }
 
