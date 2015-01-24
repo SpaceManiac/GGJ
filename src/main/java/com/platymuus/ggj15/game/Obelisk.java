@@ -21,13 +21,20 @@ public class Obelisk extends Interactable {
     }
 
     @Override
+    public boolean isInteractable() {
+        return world != null && world.landmarks == world.totalLandmarks;
+    }
+
+    @Override
     public String getInteractText() {
         return "Do Obelisk Things";
     }
 
     @Override
     public void interact() {
-        System.out.println("Interacted.");
+        for (Entity entity : world.entities) {
+            world.remove(entity);
+        }
     }
 
     @Override

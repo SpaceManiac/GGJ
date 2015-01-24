@@ -12,7 +12,7 @@ public class Follower extends Entity {
     public Follower(Entity target) {
         this.target = target;
 
-        location = new Vector2f((float) (Math.random() * 200) - 100, (float) (Math.random() * 200) - 100);
+        location = new Vector2f(target.location.x + (float) (Math.random() * 100) - 50, target.location.y + 50 + (float) (Math.random() * 50));
 
         RectangleShape shape = new RectangleShape(new Vector2f(20, 20));
         shape.setFillColor(Color.RED);
