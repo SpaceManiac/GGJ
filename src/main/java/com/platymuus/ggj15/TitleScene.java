@@ -1,8 +1,8 @@
 package com.platymuus.ggj15;
 
+import com.platymuus.ggj15.game.GameplayScene;
 import com.platymuus.jsc.Hacks;
 import com.platymuus.jsc.Scene;
-import com.platymuus.ggj15.game.GameplayScene;
 import com.platymuus.jsc.gui.BlackFade;
 import org.jsfml.graphics.RenderTarget;
 import org.jsfml.graphics.Sprite;

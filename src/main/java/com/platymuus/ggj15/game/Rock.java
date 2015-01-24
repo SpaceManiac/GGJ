@@ -1,6 +1,7 @@
 package com.platymuus.ggj15.game;
 
 import org.jsfml.graphics.Color;
+import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
 
@@ -16,6 +17,8 @@ public class Rock extends Entity {
         shape.setFillColor(Math.random() > 0.5 ? Color.BLACK : new Color(128, 128, 128));
         shape.setOrigin(15, 15);
         drawable = shape;
+
+        collision = new FloatRect(-15, -15, 30, 30);
     }
 
     private float random() {

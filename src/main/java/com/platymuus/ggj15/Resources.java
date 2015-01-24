@@ -56,6 +56,7 @@ public final class Resources {
      * Get the URL corresponding to the specified resource path. First the path
      * is checked as a file, and if that is not found it is checked internally.
      * If the resource is found nowhere, null is returned.
+     *
      * @param path the resource path
      * @return the URL, or null
      */
@@ -77,6 +78,7 @@ public final class Resources {
      * Open an InputStream from the given resource path, found according to
      * {@link #getUrl}. If the path is not found or an error occurs, null is
      * returned.
+     *
      * @param path the resource path
      * @return the InputStream, or null
      */
@@ -105,6 +107,7 @@ public final class Resources {
 
     /**
      * Get a texture with the given filename, relative to "resources".
+     *
      * @param path The path to the texture.
      * @return The loaded texture.
      */
@@ -124,6 +127,7 @@ public final class Resources {
 
     /**
      * Get a sprite from the texture with the given filename.
+     *
      * @param path The path to the texture.
      * @return A sprite with the loaded texture.
      */
@@ -134,6 +138,7 @@ public final class Resources {
     /**
      * Begin streaming music from the given filename, relative to the "sound"
      * directory and excluding the ".ogg" extension.
+     *
      * @param path The music filename.
      * @return The loaded Music.
      */
@@ -150,6 +155,7 @@ public final class Resources {
     /**
      * Get a sound buffer with the given filename, relative to the "sound"
      * directory and excluding the ".wav" extension.
+     *
      * @param path The sound filename.
      * @return The loaded SoundBuffer.
      */
@@ -169,6 +175,7 @@ public final class Resources {
 
     /**
      * Get a sound from the sound buffer with the given filename.
+     *
      * @param path The sound filename.
      * @return A sound with the loaded buffer.
      */
@@ -179,6 +186,7 @@ public final class Resources {
     /**
      * Shorthand for creating a new Text for general use. The new Text will
      * have a blank string, the {@link #FONT_TEXT} font, and the given size.
+     *
      * @param sz The size to use for the text.
      * @return The newly created Text.
      */

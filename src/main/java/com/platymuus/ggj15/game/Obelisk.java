@@ -1,10 +1,7 @@
 package com.platymuus.ggj15.game;
 
 import com.platymuus.jsc.Hacks;
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
-import org.jsfml.graphics.RenderStates;
-import org.jsfml.graphics.RenderTarget;
+import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
 /**
@@ -17,8 +14,10 @@ public class Obelisk extends Interactable {
     public Obelisk() {
         shape = new RectangleShape(new Vector2f(30, 100));
         shape.setFillColor(Color.GREEN);
-        shape.setOrigin(15, 90);
+        shape.setOrigin(15, 85);
         drawable = shape;
+
+        collision = new FloatRect(-15, -15, 30, 30);
     }
 
     @Override

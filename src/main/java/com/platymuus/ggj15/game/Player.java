@@ -2,6 +2,7 @@ package com.platymuus.ggj15.game;
 
 import com.platymuus.jsc.Hacks;
 import org.jsfml.graphics.Color;
+import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
 import org.jsfml.window.Joystick;
@@ -17,9 +18,13 @@ public class Player extends Entity {
     private Interactable prevInteractable;
 
     public Player() {
+        location = new Vector2f(0, 40);
+
         RectangleShape shape = new RectangleShape(new Vector2f(20, 20));
         shape.setFillColor(Color.BLUE);
         shape.setOrigin(10, 10);
+
+        collision = new FloatRect(-10, -10, 20, 20);
 
         drawable = shape;
     }
@@ -47,8 +52,8 @@ public class Player extends Entity {
         }
 
         // move
-        final float spd = 2.f;
-        location = new Vector2f(location.x + spd * x, location.y + spd * y);
+        float spd = 2.f;
+        world.collideTranslate(this, new Vector2f(spd * x, spd * y));
 
         // search for interactable thing
         Interactable interactable = null;

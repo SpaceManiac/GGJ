@@ -116,4 +116,9 @@ public final class Hacks {
                 (int) (color.b * f),
                 color.a);
     }
+
+    public static void center(Sprite sprite) {
+        FloatRect localBounds = sprite.getLocalBounds();
+        sprite.setOrigin(localBounds.width / 2, localBounds.height / 2);
+    }
 }
