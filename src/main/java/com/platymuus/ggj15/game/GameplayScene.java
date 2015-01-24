@@ -5,6 +5,7 @@ import com.platymuus.jsc.Hacks;
 import com.platymuus.jsc.Scene;
 import com.platymuus.jsc.gui.BlackFade;
 import org.jsfml.graphics.FloatRect;
+import org.jsfml.graphics.RenderStates;
 import org.jsfml.graphics.RenderTarget;
 import org.jsfml.graphics.View;
 import org.jsfml.system.Vector2f;
@@ -18,7 +19,7 @@ public class GameplayScene extends Scene {
 
     private BlackFade fade;
 
-    private Dunes stars;
+    private Background background;
     private World world;
     private View worldView;
 
@@ -30,7 +31,7 @@ public class GameplayScene extends Scene {
     public void initialize() throws Exception {
         runner.window.setKeyRepeatEnabled(false);
 
-        stars = new Dunes();
+        background = new Background();
         world = new World();
         worldView = new View(Vector2f.ZERO, new Vector2f(runner.screenSize));
         paused = false;
@@ -120,8 +121,11 @@ public class GameplayScene extends Scene {
         target.draw(intface);*/
 
         target.setView(worldView);
-        target.draw(stars);
+        target.draw(background);
         target.draw(world);
+        if (world.sand > 0) {
+            background.drawObscuring(time, 2 * world.sand, target, RenderStates.DEFAULT);
+        }
 
         // overlay
         target.setView(Hacks.getDefaultView(target));

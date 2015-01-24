@@ -112,4 +112,7 @@ public final class Hacks {
                 color.a);
     }
 
+    public static FloatRect translateRect(FloatRect rect, Vector2f offset) {
+        return new FloatRect(rect.left + offset.x, rect.top + offset.y, rect.width, rect.height);
+    }
 }

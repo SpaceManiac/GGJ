@@ -68,13 +68,14 @@ public class Player extends Entity {
 
         // search for interactable thing
         Interactable interactable = null;
+        float dist = 0;
         for (Entity entity : world.entities) {
             if (entity instanceof Interactable) {
                 Vector2f delta = Vector2f.sub(entity.location, location);
-                Interactable inter = ((Interactable) entity);
-                if (Hacks.dist(delta) < 50) {
-                    interactable = inter;
-                    break;
+                float thisDist = Hacks.dist(delta);
+                if (thisDist < 50 && (thisDist < dist || interactable == null)) {
+                    interactable = ((Interactable) entity);
+                    dist = thisDist;
                 }
             }
         }

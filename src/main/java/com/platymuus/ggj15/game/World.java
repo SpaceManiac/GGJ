@@ -2,19 +2,11 @@ package com.platymuus.ggj15.game;
 
 import com.platymuus.ggj15.Resources;
 import com.platymuus.jsc.BoundsHandler;
-
+import com.platymuus.jsc.Hacks;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-=======
 import java.util.*;
->>>>>>> origin/master
 
 /**
  * Todo: Javadoc for World.
@@ -34,20 +26,21 @@ public class World implements Drawable {
 
     public String fate;
 
+    public int sand; // sand on screen level
+
     public World() {
         entities.add(player);
         entities.add(new Obelisk());
 
-<<<<<<< HEAD
         //entities.add(new Follower(player, new Vector2f(0,0)));
         for (int i = 0; i < 4; ++i) {
             entities.add(new StaticFollower());
-=======
+        }
+        
         Entity last = player;
-        for (int i = 0; i < 30; ++i) {
+        for (int i = 0; i < 4; ++i) {
             last = new Follower(last);
             entities.add(last);
->>>>>>> origin/master
         }
 
         for (int i = 0; i < 100; ++i) {
@@ -60,12 +53,14 @@ public class World implements Drawable {
             entities.add(new Landmark());
         }
         for (int i = 0; i < 5; ++i) {
-            entities.add(new Clue("This is clue # " + i));
+            entities.add(new Clue("This is clue #" + (i + 1)));
         }
 
         for (int i = 0; i < 2; ++i) {
             entities.add(new FollowerDropOff());
         }
+
+        entities.add(new Dunes());
 
         island = Resources.getSprite("game/island-half.png");
         BoundsHandler.of(island).center();
@@ -108,14 +103,11 @@ public class World implements Drawable {
             return true;
         }
 
-        FloatRect actual = entity.collision;
-        actual = new FloatRect(actual.left + newLoc.x, actual.top + newLoc.y, actual.width, actual.height);
-
+        FloatRect actual = Hacks.translateRect(entity.collision, newLoc);
         for (Entity entity2 : entities) {
             if (entity2 == entity || entity2.collision == null) continue;
 
-            FloatRect rect2 = entity2.collision;
-            rect2 = new FloatRect(rect2.left + entity2.location.x, rect2.top + entity2.location.y, rect2.width, rect2.height);
+            FloatRect rect2 = Hacks.translateRect(entity2.collision, entity2.location);
             if (actual.intersection(rect2) != null) {
                 return false;
             }

@@ -18,21 +18,12 @@ public class Rock extends Entity {
             "rock-2",
             "rock-3",
             "rock-4",
-            "rock-1",
-            "rock-2",
-            "rock-3",
-            "rock-4",
-            "rock-1",
-            "rock-2",
-            "rock-3",
-            "rock-4",
-            "pyramid"
     };
 
     public Rock() {
         do {
             location = new Vector2f(random(), random());
-        } while (Hacks.dist(location) < 500);
+        } while (Hacks.dist(location) < 700);
 
         int random = (int) (Math.random() * NAMES.length);
         Sprite sprite = Resources.getSprite("game/" + NAMES[random] + ".png");
@@ -45,7 +36,7 @@ public class Rock extends Entity {
     }
 
     private float random() {
-        int DISTRIB = 5000;
+        int DISTRIB = 6000;
         return (float) (Math.random() * 2 * DISTRIB) - DISTRIB;
     }
 }

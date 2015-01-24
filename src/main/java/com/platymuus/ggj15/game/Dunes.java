@@ -1,43 +1,43 @@
 package com.platymuus.ggj15.game;
 
 import com.platymuus.ggj15.Resources;
-import org.jsfml.graphics.*;
+import com.platymuus.jsc.BoundsHandler;
+import com.platymuus.jsc.Hacks;
+import org.jsfml.graphics.FloatRect;
+import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Vector2f;
 import org.jsfml.system.Vector2i;
 
 /**
- * Simple unlimited scrolling background.
+ * deadly dunes of death
  */
-public class Dunes implements Drawable {
+public class Dunes extends Entity {
+    private FloatRect myRect;
 
-    private final Sprite sprite;
-    private final Vector2i size;
+    // if the player ends up inside us - DEATH!
 
     public Dunes() {
-        sprite = Resources.getSprite("game/sand.png");
-        size = sprite.getTexture().getSize();
+        Sprite sprite = Resources.getSprite("game/sand2.png");
+        Vector2i size = sprite.getTexture().getSize();
+        BoundsHandler.of(sprite).centerHorizontally();
+        drawable = sprite;
+        location = new Vector2f(2000, -size.y / 2);
+
+        myRect = new FloatRect(-size.x / 2, 0, size.x, size.y);
     }
 
     @Override
-    public void draw(RenderTarget target, RenderStates states) {
-        ConstView view = target.getView();
-        Vector2f center = new Vector2f(
-                view.getCenter().x % size.x,
-                view.getCenter().y % size.y
-        );
-
-        target.setView(new View(center, view.getSize()));
-        doDraw(target, states);
-        /*target.setView(new View(center, Vector2f.mul(view.getSize(), 2)));
-        doDraw(target, states);*/
-        target.setView(view);
-    }
-
-    private void doDraw(RenderTarget target, RenderStates states) {
-        for (int x = -6; x < 6; ++x) {
-            for (int y = -6; y < 6; ++y) {
-                sprite.setPosition(x * size.x, y * size.y);
-                sprite.draw(target, states);
+    public void update() {
+        FloatRect modified = Hacks.translateRect(myRect, location);
+        if (modified.intersection(Hacks.translateRect(world.getPlayer().collision, world.getPlayer().location)) != null) {
+            if (++world.sand >= 200) {
+                world.fate = "a dusty";
+            }
+        } else {
+            if (world.sand > 128) {
+                world.sand = 128;
+            } else if (world.sand > 0) {
+                --world.sand;
             }
         }
     }
