@@ -99,4 +99,13 @@ public final class Hacks {
     public static RenderStates offset(RenderStates states, Vector2f offset) {
         return new RenderStates(states, Transform.translate(states.transform, offset));
     }
+
+    public static float dist(Vector2f vec) {
+        return (float) Math.sqrt(vec.x * vec.x + vec.y * vec.y);
+    }
+
+    public static void hCenter(Text text) {
+        FloatRect localBounds = text.getLocalBounds();
+        text.setOrigin(localBounds.width / 2, 0);
+    }
 }
