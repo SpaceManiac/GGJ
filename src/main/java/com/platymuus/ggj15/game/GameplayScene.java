@@ -67,7 +67,7 @@ public class GameplayScene extends Scene {
             case PAUSE:
                 fade.fadeOut();
                 break;
-            case ZOOM_IN:
+            /*case ZOOM_IN:
                 zoom /= 2;
                 break;
             case ZOOM_OUT:

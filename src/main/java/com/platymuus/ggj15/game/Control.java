@@ -17,8 +17,8 @@ public enum Control {
     //
     PAUSE(Keyboard.Key.ESCAPE, XboxButton.BACK),
     // cheats
-    ZOOM_IN(Keyboard.Key.EQUAL, XboxButton.LB),
-    ZOOM_OUT(Keyboard.Key.DASH, XboxButton.RB),
+    //ZOOM_IN(Keyboard.Key.EQUAL, XboxButton.LB),
+    //ZOOM_OUT(Keyboard.Key.DASH, XboxButton.RB),
     //RESTART(Keyboard.Key.F1, XboxButton.START),
     GO_FAST(Keyboard.Key.LSHIFT, null),
     // movement
