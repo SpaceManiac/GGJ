@@ -39,7 +39,7 @@ public class GameplayScene extends Scene {
         worldView = new View(Vector2f.ZERO, new Vector2f(runner.screenSize));
 
         music = Resources.getMusic("desert2");
-        music.setVolume(100);
+        music.setVolume(90);
         music.setLoop(true);
         music.play();
 
@@ -94,7 +94,7 @@ public class GameplayScene extends Scene {
         if (fade.update()) {
             done = true;
         }
-        music.setVolume(100.f * fade.getTransparency());
+        music.setVolume(90 * fade.getTransparency());
 
         world.update();
         if (world.fate != null) {

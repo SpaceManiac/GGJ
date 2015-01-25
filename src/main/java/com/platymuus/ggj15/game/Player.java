@@ -40,7 +40,7 @@ public class Player extends Entity {
         followers = new ArrayList<>();
         hydration = 5400;
 
-        sound.setVolume(0);
+        sound.setVolume(70);
     }
 
     @Override
