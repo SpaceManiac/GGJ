@@ -167,12 +167,12 @@ public class Player extends Entity {
     public int getHydration() {
         return hydration;
     }
-    
-    public void setKey(){
-    	key = true;
+
+    public void setKey() {
+        key = true;
     }
-    
-    public boolean getKey(){
-    	return key;
+
+    public boolean getKey() {
+        return key;
     }
 }

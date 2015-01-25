@@ -29,11 +29,11 @@ public class Bunker extends Interactable {
 
     @Override
     public void interact() {
-    	if(world.getPlayer().getKey()){
-    		world.fate = "a safe";
-    	}else{
-    		world.fate = "an explosive";
-    	}
+        if (world.getPlayer().getKey()) {
+            world.fate = "a safe";
+        } else {
+            world.fate = "an explosive";
+        }
     }
 
 }

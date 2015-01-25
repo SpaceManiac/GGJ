@@ -1,7 +1,5 @@
 package com.platymuus.ggj15.game;
 
-import com.platymuus.ggj15.Resources;
-import com.platymuus.jsc.BoundsHandler;
 import com.platymuus.jsc.Hacks;
 import org.jsfml.graphics.Drawable;
 import org.jsfml.graphics.FloatRect;

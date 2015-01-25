@@ -6,8 +6,8 @@ import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
 
 public class Key extends Interactable {
-	
-	public Key(Vector2f l) {
+
+    public Key(Vector2f l) {
         location = new Vector2f(random(), random());
 
         RectangleShape shape = new RectangleShape(new Vector2f(30, 30));
@@ -22,15 +22,15 @@ public class Key extends Interactable {
         return world.randomDistrib(500);
     }
 
-	@Override
-	public String getInteractText() {
-		return "Pick up";
-	}
+    @Override
+    public String getInteractText() {
+        return "Pick up";
+    }
 
-	@Override
-	public void interact() {
-		world.getPlayer().setKey();
-		world.remove(this);
-	}
+    @Override
+    public void interact() {
+        world.getPlayer().setKey();
+        world.remove(this);
+    }
 
 }

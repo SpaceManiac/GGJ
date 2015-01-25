@@ -85,7 +85,7 @@ public class TitleScene extends Scene {
     public void render(RenderTarget target) {
         ConstView centered = Hacks.getCenteredView(target);
 
-        View moving = new View(Vector2f.add(centered.getCenter(), new Vector2f((float) (50 * time), (float)(10 * time))), centered.getSize());
+        View moving = new View(Vector2f.add(centered.getCenter(), new Vector2f((float) (50 * time), (float) (10 * time))), centered.getSize());
         target.setView(moving);
         target.draw(background);
 
