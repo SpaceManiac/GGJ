@@ -39,7 +39,6 @@ public abstract class Interactable extends Entity {
             } else {
                 interactText.setString(getUninteractableText());
             }
-            BoundsHandler.of(interactText).centerHorizontally();
         } else {
             interactText.setString("");
         }
@@ -48,6 +47,7 @@ public abstract class Interactable extends Entity {
     @Override
     public void draw(RenderTarget renderTarget, RenderStates renderStates) {
         super.draw(renderTarget, renderStates);
+        BoundsHandler.of(interactText).centerHorizontally();
         interactText.draw(renderTarget, Hacks.offset(renderStates, location));
     }
 }

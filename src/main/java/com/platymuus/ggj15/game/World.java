@@ -6,11 +6,15 @@ import com.platymuus.jsc.BoundsHandler;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+=======
+import java.util.*;
+>>>>>>> origin/master
 
 /**
  * Todo: Javadoc for World.
@@ -34,9 +38,16 @@ public class World implements Drawable {
         entities.add(player);
         entities.add(new Obelisk());
 
+<<<<<<< HEAD
         //entities.add(new Follower(player, new Vector2f(0,0)));
         for (int i = 0; i < 4; ++i) {
             entities.add(new StaticFollower());
+=======
+        Entity last = player;
+        for (int i = 0; i < 30; ++i) {
+            last = new Follower(last);
+            entities.add(last);
+>>>>>>> origin/master
         }
 
         for (int i = 0; i < 100; ++i) {
@@ -80,8 +91,9 @@ public class World implements Drawable {
     public void draw(RenderTarget target, RenderStates states) {
         target.draw(island);
 
-        Collections.sort(entities, EntityComparator.instance);
-        for (Entity entity : entities) {
+        List<Entity> local = new ArrayList<>(entities);
+        Collections.sort(local, EntityComparator.instance);
+        for (Entity entity : local) {
             entity.world = this;
             entity.draw(target, states);
         }

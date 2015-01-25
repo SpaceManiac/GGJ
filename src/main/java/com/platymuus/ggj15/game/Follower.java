@@ -33,6 +33,7 @@ public class Follower extends Entity {
 	        }
     	}
     }
+<<<<<<< HEAD
 
     private double speedFunc(double dist) {
         final double D = 100;
@@ -47,4 +48,6 @@ public class Follower extends Entity {
     }
     
 	
+=======
+>>>>>>> origin/master
 }
