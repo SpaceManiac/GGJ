@@ -3,6 +3,7 @@ package com.platymuus.ggj15;
 import com.platymuus.jsc.Hacks;
 import com.platymuus.jsc.Scene;
 import com.platymuus.jsc.gui.BlackFade;
+import org.jsfml.audio.Sound;
 import org.jsfml.graphics.RenderTarget;
 import org.jsfml.graphics.Text;
 import org.jsfml.window.Mouse;
@@ -19,6 +20,8 @@ public class GameOverScene extends Scene {
     private Text titleText;
     private Text beginText;
     private BlackFade fade;
+
+    private Sound sound;
 
     public GameOverScene(String fate, boolean g) {
         this.fate = fate;
@@ -40,6 +43,10 @@ public class GameOverScene extends Scene {
 
         fade = new BlackFade();
         fade.fadeIn();
+
+        sound = Resources.getSound("over");
+        sound.setVolume(50);
+        sound.play();
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.platymuus.ggj15.game;
 import com.platymuus.ggj15.Resources;
 import com.platymuus.jsc.BoundsHandler;
 import com.platymuus.jsc.Hacks;
+import org.jsfml.audio.Sound;
 import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.IntRect;
 import org.jsfml.graphics.Sprite;
@@ -25,6 +26,8 @@ public class Player extends Entity {
     private Sprite sprite;
     private int moveTimer;
 
+    private Sound sound = Resources.getSound("use");
+
     public Player() {
         location = new Vector2f(0, 40);
 
@@ -36,6 +39,8 @@ public class Player extends Entity {
         drawable = sprite;
         followers = new ArrayList<>();
         hydration = 5400;
+
+        sound.setVolume(50);
     }
 
     @Override
@@ -124,6 +129,7 @@ public class Player extends Entity {
         // interact with it if needed
         boolean action = Control.ACTION.held();
         if (action && !aHeldLast && interactable != null && interactable.isInteractable()) {
+            sound.play();
             interactable.interact();
         }
 
