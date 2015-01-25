@@ -1,6 +1,6 @@
 package com.platymuus.ggj15;
 
-import org.jsfml.audio.Music;
+import com.platymuus.jsc.MusicStream;
 import org.jsfml.audio.Sound;
 import org.jsfml.audio.SoundBuffer;
 import org.jsfml.graphics.Font;
@@ -143,14 +143,13 @@ public final class Resources {
      * @param path The music filename.
      * @return The loaded Music.
      */
-    public static Music getMusic(String path) {
-        Music mus = new Music();
-        try (InputStream in = open("sound/" + path + ".ogg")) {
-            mus.openFromStream(in);
+    public static MusicStream getMusic(String path) {
+        try {
+            return new MusicStream(open("sound/" + path + ".ogg"));
         } catch (IOException e) {
             log.error("failed to load music: " + path, e);
+            return null;
         }
-        return mus;
     }
 
     /**

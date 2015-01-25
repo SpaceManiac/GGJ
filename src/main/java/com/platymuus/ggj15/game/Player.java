@@ -99,7 +99,7 @@ public class Player extends Entity {
 
         // apply movement
         float spd = 2.f;
-        if (Control.GO_FAST.held() || goFast) spd *= 5;
+        if (Control.GO_FAST.held() || goFast) spd *= 8;
         world.collideTranslate(this, new Vector2f(spd * x, spd * y));
 
         // search for interactable thing

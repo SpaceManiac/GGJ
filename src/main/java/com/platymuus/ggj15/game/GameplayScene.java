@@ -1,7 +1,9 @@
 package com.platymuus.ggj15.game;
 
 import com.platymuus.ggj15.GameOverScene;
+import com.platymuus.ggj15.Resources;
 import com.platymuus.jsc.Hacks;
+import com.platymuus.jsc.MusicStream;
 import com.platymuus.jsc.Scene;
 import com.platymuus.jsc.gui.BlackFade;
 import org.jsfml.graphics.*;
@@ -21,6 +23,8 @@ public class GameplayScene extends Scene {
     private View worldView;
     private RectangleShape shape;
 
+    private MusicStream music;
+
     private float zoom = 1;
 
     @Override
@@ -33,6 +37,11 @@ public class GameplayScene extends Scene {
         shape.setFillColor(Color.WHITE);
         world = new World();
         worldView = new View(Vector2f.ZERO, new Vector2f(runner.screenSize));
+
+        music = Resources.getMusic("desert2");
+        music.setVolume(100);
+        music.setLoop(true);
+        music.play();
 
         fade = new BlackFade();
         fade.fadeIn();
@@ -85,6 +94,7 @@ public class GameplayScene extends Scene {
         if (fade.update()) {
             done = true;
         }
+        music.setVolume(100.f * fade.getTransparency());
 
         world.update();
         if (world.fate != null) {
@@ -92,17 +102,13 @@ public class GameplayScene extends Scene {
         }
         worldView.setSize(Vector2f.mul(new Vector2f(runner.screenSize), zoom));
         worldView.setCenter(world.getPlayer().location);
-
-        /*String axes = "";
-        for (Joystick.Axis axis : Joystick.Axis.values()) {
-            axes += axis + ": " + Joystick.getAxisPosition(0, axis) + "\n";
-        }
-
-        runner.debug(axes);*/
     }
 
     @Override
     public void finish() {
+        music.close();
+        music = null;
+
         if (world.fate != null) {
             runner.play(new GameOverScene(world.fate, world.goodEnd));
         }
@@ -111,15 +117,6 @@ public class GameplayScene extends Scene {
     @Override
     public void render(RenderTarget target) {
         // world
-        /*target.setView(worldView);
-        target.draw(world);
-        target.draw(selector);
-        target.draw(intface.worldDraw);
-
-        // user interface
-        target.setView(uiView);
-        target.draw(intface);*/
-
         target.setView(worldView);
         target.draw(background);
         target.draw(world);
