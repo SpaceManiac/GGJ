@@ -23,8 +23,6 @@ public class GameplayScene extends Scene {
 
     private float zoom = 1;
 
-    private boolean paused;
-
     @Override
     public void initialize() throws Exception {
         runner.window.setKeyRepeatEnabled(false);
@@ -35,7 +33,6 @@ public class GameplayScene extends Scene {
         shape.setFillColor(Color.WHITE);
         world = new World();
         worldView = new View(Vector2f.ZERO, new Vector2f(runner.screenSize));
-        paused = false;
 
         fade = new BlackFade();
         fade.fadeIn();
@@ -59,7 +56,6 @@ public class GameplayScene extends Scene {
         if (control == null) return;
         switch (control) {
             case PAUSE:
-                //paused = !paused;
                 fade.fadeOut();
                 break;
             case ZOOM_IN:
@@ -90,14 +86,19 @@ public class GameplayScene extends Scene {
             done = true;
         }
 
-        if (!paused) {
-            world.update();
-        }
+        world.update();
         if (world.fate != null) {
             fade.fadeOut();
         }
         worldView.setSize(Vector2f.mul(new Vector2f(runner.screenSize), zoom));
         worldView.setCenter(world.getPlayer().location);
+
+        /*String axes = "";
+        for (Joystick.Axis axis : Joystick.Axis.values()) {
+            axes += axis + ": " + Joystick.getAxisPosition(0, axis) + "\n";
+        }
+
+        runner.debug(axes);*/
     }
 
     @Override

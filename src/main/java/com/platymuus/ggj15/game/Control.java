@@ -13,14 +13,14 @@ import java.util.Map;
 public enum Control {
     // normal
     ACTION(Keyboard.Key.SPACE, XboxButton.A),
-    ALTERNATE(Keyboard.Key.TAB, XboxButton.B),
+    //ALTERNATE(Keyboard.Key.TAB, XboxButton.B),
     //
     PAUSE(Keyboard.Key.ESCAPE, XboxButton.START),
     // cheats
     ZOOM_IN(Keyboard.Key.EQUAL, XboxButton.LB),
     ZOOM_OUT(Keyboard.Key.DASH, XboxButton.RB),
     RESTART(Keyboard.Key.F1, XboxButton.BACK),
-    GO_FAST(Keyboard.Key.LSHIFT, XboxButton.X),
+    GO_FAST(Keyboard.Key.LSHIFT, null),
     // movement
     UP(Keyboard.Key.UP, null),
     DOWN(Keyboard.Key.DOWN, null),

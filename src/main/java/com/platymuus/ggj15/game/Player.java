@@ -49,6 +49,7 @@ public class Player extends Entity {
         float y = up && !down ? -1 : down && !up ? 1 : 0;
 
         // joy-movement handling
+        boolean goFast = false;
         for (int j = 0; j < Joystick.JOYSTICK_COUNT; ++j) {
             if (!Joystick.isConnected(j)) continue;
 
@@ -59,6 +60,8 @@ public class Player extends Entity {
             if (dx != 0 || dy != 0) {
                 world.controllerMode = true;
             }
+
+            goFast |= Joystick.getAxisPosition(j, Joystick.Axis.Z) > 50;
         }
 
         // limit to 1
@@ -96,7 +99,7 @@ public class Player extends Entity {
 
         // apply movement
         float spd = 2.f;
-        if (Control.GO_FAST.held()) spd *= 5;
+        if (Control.GO_FAST.held() || goFast) spd *= 5;
         world.collideTranslate(this, new Vector2f(spd * x, spd * y));
 
         // search for interactable thing

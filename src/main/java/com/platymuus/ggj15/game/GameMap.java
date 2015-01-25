@@ -27,6 +27,7 @@ public class GameMap {
 
         add(L, new ObeliskRune("feather"), 450, -200);
         add(L, new ObeliskRune("scarab"), 550 * 8 + 100, -300 * 12);
+        // ankh - bird - eye - tad
 
         return L;
     }
