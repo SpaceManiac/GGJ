@@ -38,4 +38,12 @@ jar.manifest.mainAttributes(
         'Main-Class': 'com.platymuus.ggj15.Main'
 )
 
-build.dependsOn shadowJar
+task launch4j {
+    dependsOn shadowJar
+    doLast {
+        exec {
+            workingDir 'C:\\Downloads\\Applications\\launch4j'
+            commandLine 'C:\\Downloads\\Applications\\launch4j\\launch4jc.exe', file('launch4j.xml')
+        }
+    }
+}
