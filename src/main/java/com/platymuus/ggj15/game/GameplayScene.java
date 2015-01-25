@@ -124,7 +124,7 @@ public class GameplayScene extends Scene {
             overlay.drawObscuring(time, 2 * world.sand, target, RenderStates.DEFAULT);
         }
         if (world.getPlayer().getHydration() < 1200) {
-        	shape.setScale(new Vector2f(runner.screenSize));
+            shape.setScale(new Vector2f(runner.screenSize));
             shape.setFillColor(new Color(Color.WHITE, (int) (256 * (1200 - world.getPlayer().getHydration()) / 1200.0f)));
             shape.setPosition(new Vector2f(world.getPlayer().location.x - runner.screenSize.x / 2, world.getPlayer().location.y - runner.screenSize.y / 2));
             target.draw(shape);
