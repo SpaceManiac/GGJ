@@ -18,7 +18,7 @@ public class World implements Drawable {
 
     private Player player = new Player();
 
-    public int landmarks, totalLandmarks;
+    public int landmarks = 0, totalLandmarks = 10;
 
     private Sprite island;
 
@@ -35,26 +35,23 @@ public class World implements Drawable {
 
         entities.add(new StaticFollower("Joe"));
         entities.add(new StaticFollower("Prof"));
-        entities.add(new StaticFollower("Dorky"));
-        entities.add(new StaticFollower("Soarin "));
-
+        entities.add(new StaticFollower("Sally"));
+        entities.add(new StaticFollower("Lift Man"));
 
         for (int i = 0; i < 100; ++i) {
             entities.add(new Rock());
         }
 
-        landmarks = 0;
-        totalLandmarks = 10;
         for (int i = 0; i < totalLandmarks; ++i) {
             entities.add(new Landmark());
         }
-        for (int i = 0; i < 5; ++i) {
+        /*for (int i = 0; i < 5; ++i) {
             entities.add(new Clue("This is clue #" + (i + 1)));
-        }
+        }*/
 
-        for (int i = 0; i < 2; ++i) {
+        /*for (int i = 0; i < 2; ++i) {
             entities.add(new FollowerDropOff());
-        }
+        }*/
 
         entities.add(new Dunes());
         entities.add(new Oasis());
