@@ -20,7 +20,7 @@ import org.jsfml.window.event.Event;
  */
 public class TitleScene extends Scene {
 
-    public static final String TITLE = "To Do in the Desert";
+    public static final String TITLE = "Get Out?";
 
     private Text titleText;
     private Text beginText;

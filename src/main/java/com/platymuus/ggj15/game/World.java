@@ -44,10 +44,6 @@ public class World implements Drawable {
             entities.add(new Rock());
         }
 
-        for (int i = 0; i < 2; ++i) {
-            entities.add(new Well(i));
-        }
-
         entities.add(new Boat(null, null));
         entities.add(new Bunker(null));
         entities.add(new Key(null));

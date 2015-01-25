@@ -23,6 +23,7 @@ public class GameMap {
         add(L, new StaticFollower("Joe"), 550 * 8, -1300);
 
         add(L, new ObeliskRune("feather"), 450, -200);
+        add(L, new Well(1), 1000, -200);
         add(L, new ObeliskRune("scarab"), 550 * 8 + 100, -300 * 12);
 
         // Q2
@@ -30,6 +31,7 @@ public class GameMap {
             add(L, new Path(), -750 * j, -750 * j);
         }
         add(L, new ObeliskRune("eye"), -750 * 4, -750 * 4);
+        add(L, new Well(0), -750 * 4 - 100, -750 * 4 + 300);
 
         // Q3
         add(L, new Path(), -500, 300);
@@ -39,12 +41,12 @@ public class GameMap {
         }
         add(L, new ObeliskRune("ankh"), -1000 + 100 * 4, 600 + 600 * 4);
         add(L, new ObeliskRune("bird"), -1000 + 100 * 7, 600 + 600 * 4 + 100);
+        add(L, new Well(0), -1000 + 100, 600 + 600 * 4 - 100);
 
         // Q4
         add(L, new Path(), 600, 600);
         add(L, new Path(), 1200, 1100);
         add(L, new StaticFollower("Prof"), 1200, 1200);
-        // ankh - bird - tad
 
         return L;
     }
