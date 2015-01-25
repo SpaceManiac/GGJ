@@ -16,6 +16,7 @@ public class Player extends Entity {
 
     private boolean aHeldLast, follow = true;
     private ArrayList<Follower> followers;
+    private int hydration;
 
     private Interactable prevInteractable;
 
@@ -30,6 +31,7 @@ public class Player extends Entity {
 
         drawable = shape;
         followers = new ArrayList<Follower>();
+        hydration = 5400;
     }
 
     @Override
@@ -95,6 +97,9 @@ public class Player extends Entity {
         // bookkeeping
         aHeldLast = action;
         prevInteractable = interactable;
+        if(hydration-- <= 0){
+        	world.fate = "a thirsty";
+        }
     }
 
     private float adjust(float v) {
@@ -124,5 +129,8 @@ public class Player extends Entity {
 
     public void toggleFollow() {
         follow = !follow;
+    }
+    public void refill(){
+    	hydration = 5400;
     }
 }
