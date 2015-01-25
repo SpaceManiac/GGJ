@@ -1,9 +1,11 @@
 package com.platymuus.ggj15.game;
 
+import com.platymuus.ggj15.Resources;
+import com.platymuus.jsc.BoundsHandler;
 import com.platymuus.jsc.Hacks;
-import org.jsfml.graphics.Color;
 import org.jsfml.graphics.FloatRect;
-import org.jsfml.graphics.RectangleShape;
+import org.jsfml.graphics.IntRect;
+import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Vector2f;
 import org.jsfml.window.Joystick;
 
@@ -20,17 +22,19 @@ public class Player extends Entity {
 
     private Interactable prevInteractable;
 
+    private Sprite sprite;
+    private int moveTimer;
+
     public Player() {
         location = new Vector2f(0, 40);
 
-        RectangleShape shape = new RectangleShape(new Vector2f(20, 20));
-        shape.setFillColor(Color.BLUE);
-        shape.setOrigin(10, 10);
-
+        sprite = Resources.getSprite("game/protag.png");
+        sprite.setTextureRect(new IntRect(100 * 2, 0, 100, 102));
+        BoundsHandler.of(sprite).position(0.5f, 0.9f);
         collision = new FloatRect(-10, -10, 20, 20);
 
-        drawable = shape;
-        followers = new ArrayList<Follower>();
+        drawable = sprite;
+        followers = new ArrayList<>();
         hydration = 5400;
     }
 
@@ -62,6 +66,32 @@ public class Player extends Entity {
         if (mag > 1) {
             x /= mag;
             y /= mag;
+        }
+
+        if (mag > 0) {
+            double angle = Math.toDegrees(Math.atan2(y, x));
+            angle = (360 + angle) % 360;
+            int facing = 1;
+            if (angle < 45) {
+                facing = 1;
+            } else if (angle < 45+90) {
+                facing = 2;
+            } else if (angle < 45+180) {
+                facing = 3;
+            } else if (angle < 45+270) {
+                facing = 0;
+            }
+            sprite.setTextureRect(new IntRect(100 * facing, 0, 100, 102));
+
+            moveTimer = (moveTimer + 1) % 120;
+            if (moveTimer < 60) {
+                sprite.setPosition(0, -5);
+            } else {
+                sprite.setPosition(0, 0);
+            }
+        } else {
+            moveTimer = 0;
+            sprite.setPosition(0, 0);
         }
 
         // apply movement
