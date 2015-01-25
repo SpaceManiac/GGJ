@@ -43,7 +43,7 @@ public class World implements Drawable {
         }
 
         for (int i = 0; i < totalLandmarks; ++i) {
-            entities.add(new Landmark());
+            entities.add(new ObeliskRune());
         }
         /*for (int i = 0; i < 5; ++i) {
             entities.add(new Clue("This is clue #" + (i + 1)));

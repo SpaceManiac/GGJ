@@ -5,11 +5,11 @@ import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
 
 /**
- * Todo: Javadoc for Item.
+ * Evil rune for Obelisk purposes.
  */
-public class Landmark extends Interactable {
+public class ObeliskRune extends Interactable {
 
-    public Landmark() {
+    public ObeliskRune() {
         location = new Vector2f(random(), random());
 
         RectangleShape shape = new RectangleShape(new Vector2f(30, 30));
@@ -25,7 +25,7 @@ public class Landmark extends Interactable {
 
     @Override
     public String getInteractText() {
-        return "Discover location";
+        return "Activate Rune";
     }
 
     @Override

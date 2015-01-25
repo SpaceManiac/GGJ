@@ -41,22 +41,4 @@ public class Oasis extends Interactable {
         return 120;
     }
 
-    @Override
-    public void update() {
-        /*boolean successJ = false, successP = false;
-        for (Follower f : world.getPlayer().getFollowers()) {
-            if (f.getName().equals("Joe")) {
-                successJ = true;
-            } else if (f.getName().equals("Prof")) {
-                successP = true;
-            }
-        }
-
-        FloatRect modified = Hacks.translateRect(myRect, location);
-        if (modified.intersection(Hacks.translateRect(world.getPlayer().collision, world.getPlayer().location)) != null) {
-            if (successJ && successP) {
-                world.fate = "a civilized";
-            }
-        }*/
-    }
 }

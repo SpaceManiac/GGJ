@@ -98,8 +98,6 @@ public class GameplayScene extends Scene {
         }
         worldView.setSize(Vector2f.mul(new Vector2f(runner.screenSize), zoom));
         worldView.setCenter(world.getPlayer().location);
-
-        runner.debug("zoom: " + 1 / zoom);
     }
 
     @Override
