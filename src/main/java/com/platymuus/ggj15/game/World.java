@@ -3,7 +3,10 @@ package com.platymuus.ggj15.game;
 import com.platymuus.ggj15.Resources;
 import com.platymuus.jsc.BoundsHandler;
 import com.platymuus.jsc.Hacks;
-import org.jsfml.graphics.*;
+import org.jsfml.graphics.Drawable;
+import org.jsfml.graphics.FloatRect;
+import org.jsfml.graphics.RenderStates;
+import org.jsfml.graphics.RenderTarget;
 import org.jsfml.system.Vector2f;
 
 import java.util.*;
@@ -21,8 +24,6 @@ public class World implements Drawable {
     private Player player = new Player();
 
     public int runes = 0, totalRunes = 6;
-
-    private Sprite island;
 
     public boolean controllerMode;
 
@@ -50,9 +51,6 @@ public class World implements Drawable {
         entities.add(new Boat(null, null));
         entities.add(new Bunker(null));
         entities.add(new Key(null));
-
-        island = Resources.getSprite("game/island-half.png");
-        BoundsHandler.of(island).center();
     }
 
     public Player getPlayer() {
@@ -70,8 +68,6 @@ public class World implements Drawable {
 
     @Override
     public void draw(RenderTarget target, RenderStates states) {
-        target.draw(island);
-
         List<Entity> local = new ArrayList<>(entities);
         Collections.sort(local, EntityComparator.instance);
         for (Entity entity : local) {
