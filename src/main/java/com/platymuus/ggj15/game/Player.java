@@ -33,9 +33,6 @@ public class Player extends Entity {
         BoundsHandler.of(sprite).position(0.5f, 0.9f);
         collision = new FloatRect(-10, -10, 20, 20);
 
-        drawable = shape;
-        followers = new ArrayList<Follower>();
-        hydration = 1000;
         drawable = sprite;
         followers = new ArrayList<>();
         hydration = 5400;
@@ -163,7 +160,8 @@ public class Player extends Entity {
     public void refill() {
         hydration = 5400;
     }
-    public int getHydration(){
-    	return hydration;
+
+    public int getHydration() {
+        return hydration;
     }
 }
