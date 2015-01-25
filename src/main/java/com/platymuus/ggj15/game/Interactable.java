@@ -7,7 +7,7 @@ import org.jsfml.graphics.RenderStates;
 import org.jsfml.graphics.RenderTarget;
 
 /**
- * Todo: Javadoc for Interactable.
+ * An entity the player can interact with.
  */
 public abstract class Interactable extends Entity {
 

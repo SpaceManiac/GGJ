@@ -6,7 +6,7 @@ import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
 /**
- * Todo: Javadoc for OutlinedText.
+ * Text with an outline on it.
  */
 public class OutlinedText extends Text {
 

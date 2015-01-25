@@ -9,7 +9,7 @@ import org.jsfml.system.Vector2f;
 import java.util.*;
 
 /**
- * Todo: Javadoc for World.
+ * Container for entities & other game-world info.
  */
 public class World implements Drawable {
 

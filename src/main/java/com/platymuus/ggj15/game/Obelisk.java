@@ -7,7 +7,7 @@ import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 
 /**
- * Todo: Javadoc for Obelisk.
+ * Obelisk o' murder.
  */
 public class Obelisk extends Interactable {
 

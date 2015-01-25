@@ -8,7 +8,7 @@ import org.jsfml.graphics.RenderTarget;
 import org.jsfml.system.Vector2f;
 
 /**
- * Todo: Javadoc for Entity.
+ * Root for entities in the world.
  */
 public class Entity implements Drawable {
 

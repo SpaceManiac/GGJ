@@ -12,7 +12,7 @@ import org.jsfml.window.Joystick;
 import java.util.ArrayList;
 
 /**
- * Todo: Javadoc for Player.
+ * Our protagonist.
  */
 public class Player extends Entity {
 
