@@ -18,7 +18,7 @@ public class World implements Drawable {
 
     private Player player = new Player();
 
-    public int landmarks = 0, totalLandmarks = 10;
+    public int runes = 0, totalRunes = 6;
 
     private Sprite island;
 
@@ -33,32 +33,15 @@ public class World implements Drawable {
         entities.add(player);
         entities.add(new Obelisk());
 
-        entities.add(new StaticFollower("Joe"));
-        entities.add(new StaticFollower("Prof"));
-        entities.add(new StaticFollower("Sally"));
-        entities.add(new StaticFollower("Lift Man"));
+        entities.addAll(GameMap.entities());
 
         for (int i = 0; i < 100; ++i) {
             entities.add(new Rock());
         }
 
-        for (int i = 0; i < totalLandmarks; ++i) {
-            entities.add(new ObeliskRune());
+        for (int i = 0; i < 2; ++i) {
+            entities.add(new Well());
         }
-        
-        for (int i = 0; i < 2; ++i){
-        	entities.add(new Well());
-        }
-        /*for (int i = 0; i < 5; ++i) {
-            entities.add(new Clue("This is clue #" + (i + 1)));
-        }*/
-
-        /*for (int i = 0; i < 2; ++i) {
-            entities.add(new FollowerDropOff());
-        }*/
-
-        entities.add(new Dunes());
-        entities.add(new Oasis());
 
         island = Resources.getSprite("game/island-half.png");
         BoundsHandler.of(island).center();
@@ -135,10 +118,6 @@ public class World implements Drawable {
         } while (ty > 0);
 
         entity.location = new Vector2f(entity.location.x + sx * tx, entity.location.y + sy * ty);
-    }
-
-    public void addEntity(Entity e) {
-        entities.add(e);
     }
 
     private static class EntityComparator implements Comparator<Entity> {

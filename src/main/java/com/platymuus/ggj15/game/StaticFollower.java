@@ -36,10 +36,8 @@ public class StaticFollower extends Interactable {
             temp = new Follower(world.getPlayer().getFollowers().get(world.getPlayer().getFollowers().size() - 1), location, name);
         }
         world.getPlayer().addFollower(temp);
-        world.addEntity(temp);
+        world.entities.add(temp);
         world.remove(this);
-
-
     }
 
 }

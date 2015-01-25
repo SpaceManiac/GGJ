@@ -74,11 +74,11 @@ public class Player extends Entity {
             int facing = 1;
             if (angle < 45) {
                 facing = 1;
-            } else if (angle < 45+90) {
+            } else if (angle < 135) {
                 facing = 2;
-            } else if (angle < 45+180) {
+            } else if (angle < 225) {
                 facing = 3;
-            } else if (angle < 45+270) {
+            } else if (angle < 315) {
                 facing = 0;
             }
             sprite.setTextureRect(new IntRect(100 * facing, 0, 100, 102));
@@ -127,8 +127,8 @@ public class Player extends Entity {
         // bookkeeping
         aHeldLast = action;
         prevInteractable = interactable;
-        if(hydration-- <= 0){
-        	world.fate = "a thirsty";
+        if (hydration-- <= 0) {
+            world.fate = "a thirsty";
         }
     }
 
@@ -149,10 +149,6 @@ public class Player extends Entity {
         return followers;
     }
 
-    public void clearFollowers() {
-        followers = new ArrayList<Follower>();
-    }
-
     public boolean getFollow() {
         return follow;
     }
@@ -160,7 +156,8 @@ public class Player extends Entity {
     public void toggleFollow() {
         follow = !follow;
     }
-    public void refill(){
-    	hydration = 5400;
+
+    public void refill() {
+        hydration = 5400;
     }
 }

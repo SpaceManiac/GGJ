@@ -30,7 +30,7 @@ public class ObeliskRune extends Interactable {
 
     @Override
     public void interact() {
-        world.landmarks++;
+        world.runes++;
         world.remove(this);
     }
 }

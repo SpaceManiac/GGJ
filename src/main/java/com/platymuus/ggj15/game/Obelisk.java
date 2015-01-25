@@ -31,7 +31,7 @@ public class Obelisk extends Interactable {
 
     @Override
     public boolean isInteractable() {
-        return world.landmarks == world.totalLandmarks;
+        return world.runes == world.totalRunes;
     }
 
     @Override
@@ -41,18 +41,18 @@ public class Obelisk extends Interactable {
 
     @Override
     public String getUninteractableText() {
-        return "Activate " + (world.totalLandmarks - world.landmarks) + " more runes...";
+        return "Activate " + (world.totalRunes - world.runes) + " more runes...";
     }
 
     @Override
     public void interact() {
-        world.fate = "a world-ending";
+        world.fate = "a demonic";
     }
 
     @Override
     public void draw(RenderTarget renderTarget, RenderStates renderStates) {
-        horror.setColor(new Color(Color.WHITE, 255 * world.landmarks / world.totalLandmarks));
-        glow.setColor(new Color(Color.WHITE, world.landmarks == world.totalLandmarks ? (int) ((216) + 64 * Math.sin(System.currentTimeMillis() / 700.)) : 0));
+        horror.setColor(new Color(Color.WHITE, 255 * world.runes / world.totalRunes));
+        glow.setColor(new Color(Color.WHITE, world.runes == world.totalRunes ? (int) ((216) + 64 * Math.sin(System.currentTimeMillis() / 700.)) : 0));
         super.draw(renderTarget, renderStates);
     }
 }
