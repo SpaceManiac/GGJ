@@ -9,7 +9,7 @@ import org.jsfml.system.Vector2f;
 import org.jsfml.system.Vector2i;
 
 /**
- * Todo: Javadoc for Rock.
+ * Generic rock thing which does nothing.
  */
 public class Rock extends Entity {
 
@@ -18,6 +18,15 @@ public class Rock extends Entity {
             "rock-2",
             "rock-3",
             "rock-4",
+            "rock-1",
+            "rock-2",
+            "rock-3",
+            "rock-4",
+            "rock-1",
+            "rock-2",
+            "rock-3",
+            "rock-4",
+            "pyramid"
     };
 
     public Rock() {
