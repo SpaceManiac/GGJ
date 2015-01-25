@@ -25,8 +25,8 @@ public class GameMap {
         add(L, new Oasis(), 550 * 8 - 20, -300 * 13 - 50 + 1200);
         add(L, new StaticFollower("Joe"), 550 * 8, -1300);
 
-        add(L, new ObeliskRune(), 450, -200);
-        add(L, new ObeliskRune(), 550 * 8 + 100, -300 * 12);
+        add(L, new ObeliskRune("feather"), 450, -200);
+        add(L, new ObeliskRune("scarab"), 550 * 8 + 100, -300 * 12);
 
         return L;
     }

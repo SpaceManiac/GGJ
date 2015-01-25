@@ -1,7 +1,8 @@
 package com.platymuus.ggj15.game;
 
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
+import com.platymuus.ggj15.Resources;
+import com.platymuus.jsc.BoundsHandler;
+import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Vector2f;
 
 /**
@@ -9,13 +10,17 @@ import org.jsfml.system.Vector2f;
  */
 public class ObeliskRune extends Interactable {
 
-    public ObeliskRune() {
+    private String name;
+    private Sprite sprite;
+    private boolean used;
+
+    public ObeliskRune(String name) {
+        this.name = name;
         location = new Vector2f(random(), random());
 
-        RectangleShape shape = new RectangleShape(new Vector2f(30, 30));
-        shape.setFillColor(Color.CYAN);
-        shape.setOrigin(15, 15);
-        drawable = shape;
+        sprite = Resources.getSprite("game/heiro-" + name + ".png");
+        BoundsHandler.of(sprite).position(0.5f, 1);
+        drawable = sprite;
     }
 
     private float random() {
@@ -29,8 +34,15 @@ public class ObeliskRune extends Interactable {
     }
 
     @Override
+    public boolean isInteractable() {
+        return !used;
+    }
+
+    @Override
     public void interact() {
         world.runes++;
-        world.remove(this);
+        sprite.setTexture(Resources.getTexture("game/heiro-" + name + "-glow.png"));
+        used = true;
+        interactText.setString("");
     }
 }
