@@ -15,11 +15,11 @@ public enum Control {
     ACTION(Keyboard.Key.SPACE, XboxButton.A),
     //ALTERNATE(Keyboard.Key.TAB, XboxButton.B),
     //
-    PAUSE(Keyboard.Key.ESCAPE, XboxButton.START),
+    PAUSE(Keyboard.Key.ESCAPE, XboxButton.BACK),
     // cheats
     ZOOM_IN(Keyboard.Key.EQUAL, XboxButton.LB),
     ZOOM_OUT(Keyboard.Key.DASH, XboxButton.RB),
-    RESTART(Keyboard.Key.F1, XboxButton.BACK),
+    RESTART(Keyboard.Key.F1, XboxButton.START),
     GO_FAST(Keyboard.Key.LSHIFT, null),
     // movement
     UP(Keyboard.Key.UP, null),
