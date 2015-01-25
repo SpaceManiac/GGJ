@@ -1,7 +1,5 @@
 package com.platymuus.ggj15.game;
 
-import org.jsfml.graphics.Color;
-import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
 
 public class StaticFollower extends Interactable {
@@ -10,11 +8,7 @@ public class StaticFollower extends Interactable {
     public StaticFollower(String n) {
         location = new Vector2f(random(), random());
         name = n;
-
-        RectangleShape shape = new RectangleShape(new Vector2f(20, 20));
-        shape.setFillColor(Color.RED);
-        shape.setOrigin(10, 10);
-        drawable = shape;
+        drawable = Follower.sprite(n);
     }
 
     private float random() {

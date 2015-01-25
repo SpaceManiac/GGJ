@@ -19,7 +19,7 @@ public class Obelisk extends Interactable {
         location = new Vector2f(0, -50);
 
         sprite = Resources.getSprite("game/obelisk.png");
-        horror = Resources.getSprite("game/horror-obelisk.png");
+        horror = Resources.getSprite("game/obelisk-horror.png");
         glow = Resources.getSprite("game/obelisk-glow.png");
         BoundsHandler.of(sprite).position(0.5f, 1f);
         BoundsHandler.of(horror).position(0.5f, 1f);

@@ -17,7 +17,7 @@ public class Dunes extends Entity {
     // if the player ends up inside us - DEATH!
 
     public Dunes() {
-        Sprite sprite = Resources.getSprite("game/sand2.png");
+        Sprite sprite = Resources.getSprite("game/dunes.png");
         Vector2i size = sprite.getTexture().getSize();
         BoundsHandler.of(sprite).centerHorizontally();
         drawable = sprite;

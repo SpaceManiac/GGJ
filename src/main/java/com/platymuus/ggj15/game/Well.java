@@ -23,7 +23,6 @@ public class Well extends Interactable {
         return (float) (Math.random() * 2 * DISTRIB) - DISTRIB;
     }
 
-
     @Override
     public String getInteractText() {
         return "Draw water";
