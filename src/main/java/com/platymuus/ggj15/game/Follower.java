@@ -32,7 +32,8 @@ public class Follower extends Entity {
             }
         }
     }
-    public String getName(){
-    	return name;
+
+    public String getName() {
+        return name;
     }
 }

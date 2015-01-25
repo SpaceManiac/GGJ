@@ -13,7 +13,6 @@ import org.jsfml.system.Vector2i;
  */
 public class Dunes extends Entity {
     private FloatRect myRect;
-    private boolean successJ = false, successP = false;
 
     // if the player ends up inside us - DEATH!
 
@@ -29,25 +28,16 @@ public class Dunes extends Entity {
 
     @Override
     public void update() {
-    	if(!successJ||!successP){
-    		for(Follower f: world.getPlayer().getFollowers()){
-    			if(f.getName().equals("Joe")){
-    				successJ = true;
-    			}
-    			if(f.getName().equals("Prof")){
-    				successP = true;
-    			}
-    		}
-    	}
+        boolean successJ = false;
+        for (Follower f : world.getPlayer().getFollowers()) {
+            if (f.getName().equals("Joe")) {
+                successJ = true;
+            }
+        }
         FloatRect modified = Hacks.translateRect(myRect, location);
-        if (modified.intersection(Hacks.translateRect(world.getPlayer().collision, world.getPlayer().location)) != null) {
+        if (modified.intersection(Hacks.translateRect(world.getPlayer().collision, world.getPlayer().location)) != null && !successJ) {
             if (++world.sand >= 200) {
-            	if(successJ && successP){
-            		world.fate = "a prosperous";
-            		world.goodEnd = true;
-            	}else{
-            		world.fate = "a dusty";
-            	}
+                world.fate = "a dusty";
             }
         } else {
             if (world.sand > 128) {

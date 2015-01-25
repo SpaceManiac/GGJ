@@ -5,7 +5,7 @@ import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
 
 public class StaticFollower extends Interactable {
-	public final String name;
+    public final String name;
 
     public StaticFollower(String n) {
         location = new Vector2f(random(), random());

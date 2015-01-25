@@ -57,6 +57,7 @@ public class World implements Drawable {
         }
 
         entities.add(new Dunes());
+        entities.add(new Oasis());
 
         island = Resources.getSprite("game/island-half.png");
         BoundsHandler.of(island).center();
