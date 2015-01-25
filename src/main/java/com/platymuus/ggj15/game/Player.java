@@ -31,7 +31,7 @@ public class Player extends Entity {
 
         drawable = shape;
         followers = new ArrayList<Follower>();
-        hydration = 5400;
+        hydration = 1000;
     }
 
     @Override
@@ -132,5 +132,8 @@ public class Player extends Entity {
     }
     public void refill(){
     	hydration = 5400;
+    }
+    public int getHydration(){
+    	return hydration;
     }
 }

@@ -4,7 +4,10 @@ import com.platymuus.ggj15.GameOverScene;
 import com.platymuus.jsc.Hacks;
 import com.platymuus.jsc.Scene;
 import com.platymuus.jsc.gui.BlackFade;
+
+import org.jsfml.graphics.Color;
 import org.jsfml.graphics.FloatRect;
+import org.jsfml.graphics.RectangleShape;
 import org.jsfml.graphics.RenderStates;
 import org.jsfml.graphics.RenderTarget;
 import org.jsfml.graphics.View;
@@ -22,6 +25,7 @@ public class GameplayScene extends Scene {
     private Background background, overlay;
     private World world;
     private View worldView;
+    private RectangleShape shape;
 
     private float zoom = 1;
 
@@ -33,6 +37,8 @@ public class GameplayScene extends Scene {
 
         background = new Background("game/blendground.png");
         overlay = new Background("game/sand.png");
+        shape = new RectangleShape(new Vector2f(runner.screenSize));
+	    shape.setFillColor(Color.WHITE);
         world = new World();
         worldView = new View(Vector2f.ZERO, new Vector2f(runner.screenSize));
         paused = false;
@@ -124,6 +130,11 @@ public class GameplayScene extends Scene {
         target.draw(world);
         if (world.sand > 0) {
             overlay.drawObscuring(time, 2 * world.sand, target, RenderStates.DEFAULT);
+        }
+        if(world.getPlayer().getHydration()<1200){
+        	shape.setFillColor(new Color(Color.WHITE,(int)(256*(1200-world.getPlayer().getHydration())/1200.0f)));
+        	shape.setPosition(new Vector2f(world.getPlayer().location.x-runner.screenSize.x/2,world.getPlayer().location.y-runner.screenSize.y/2));
+        	target.draw(shape);
         }
 
         // overlay
