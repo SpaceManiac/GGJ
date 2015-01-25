@@ -40,7 +40,7 @@ public class World implements Drawable {
         }
 
         for (int i = 0; i < 2; ++i) {
-            entities.add(new Well());
+            entities.add(new Well(i));
         }
         
         entities.add(new Boat(null, null));

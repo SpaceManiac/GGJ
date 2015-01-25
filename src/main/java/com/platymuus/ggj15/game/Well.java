@@ -1,21 +1,23 @@
 package com.platymuus.ggj15.game;
 
-import org.jsfml.graphics.Color;
+import com.platymuus.ggj15.Resources;
+import com.platymuus.jsc.BoundsHandler;
 import org.jsfml.graphics.FloatRect;
-import org.jsfml.graphics.RectangleShape;
+import org.jsfml.graphics.Sprite;
 import org.jsfml.system.Vector2f;
+import org.jsfml.system.Vector2i;
 
 public class Well extends Interactable {
 
-    public Well() {
+    public Well(int i) {
         location = new Vector2f(random(), random());
 
-        RectangleShape shape = new RectangleShape(new Vector2f(30, 30));
-        shape.setFillColor(Color.MAGENTA);
-        shape.setOrigin(15, 15);
-        drawable = shape;
+        Sprite sprite = Resources.getSprite("game/well-" + i + ".png");
+        BoundsHandler.of(sprite).position(0.5f, 1);
+        drawable = sprite;
 
-        collision = new FloatRect(-15, -15, 30, 30);
+        Vector2i size = sprite.getTexture().getSize();
+        collision = new FloatRect(-size.x / 2, -size.y * 3 / 4, size.x, size.y * 3 / 4);
     }
 
     private float random() {
