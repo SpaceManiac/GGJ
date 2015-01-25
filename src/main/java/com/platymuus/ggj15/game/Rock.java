@@ -34,8 +34,7 @@ public class Rock extends Entity {
             location = new Vector2f(random(), random());
         } while (Hacks.dist(location) < 700);
 
-        int random = (int) (Math.random() * NAMES.length);
-        Sprite sprite = Resources.getSprite("game/" + NAMES[random] + ".png");
+        Sprite sprite = Resources.getSprite("game/" + NAMES[world.random.nextInt(NAMES.length)] + ".png");
         BoundsHandler.of(sprite).position(0.5f, 1);
         drawable = sprite;
 
@@ -45,7 +44,6 @@ public class Rock extends Entity {
     }
 
     private float random() {
-        int DISTRIB = 6000;
-        return (float) (Math.random() * 2 * DISTRIB) - DISTRIB;
+        return world.randomDistrib(6000);
     }
 }

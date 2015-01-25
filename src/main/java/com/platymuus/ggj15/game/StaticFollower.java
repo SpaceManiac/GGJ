@@ -12,8 +12,7 @@ public class StaticFollower extends Interactable {
     }
 
     private float random() {
-        int DISTRIB = 500;
-        return (float) (Math.random() * 2 * DISTRIB) - DISTRIB;
+        return world.randomDistrib(500);
     }
 
     @Override

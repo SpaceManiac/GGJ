@@ -4,7 +4,6 @@ import com.platymuus.ggj15.Resources;
 import com.platymuus.jsc.BoundsHandler;
 import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.Sprite;
-import org.jsfml.system.Vector2f;
 import org.jsfml.system.Vector2i;
 
 /**
@@ -18,7 +17,6 @@ public class ObeliskRune extends Interactable {
 
     public ObeliskRune(String name) {
         this.name = name;
-        location = new Vector2f(random(), random());
 
         sprite = Resources.getSprite("game/heiro-" + name + ".png");
         BoundsHandler.of(sprite).position(0.5f, 1);
@@ -26,11 +24,6 @@ public class ObeliskRune extends Interactable {
 
         Vector2i size = sprite.getTexture().getSize();
         collision = new FloatRect(-size.x / 2, -size.y * 3 / 4, size.x, size.y * 3 / 4);
-    }
-
-    private float random() {
-        int DISTRIB = 500;
-        return (float) (Math.random() * 2 * DISTRIB) - DISTRIB;
     }
 
     @Override

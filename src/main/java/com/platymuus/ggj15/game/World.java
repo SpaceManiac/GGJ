@@ -13,6 +13,8 @@ import java.util.*;
  */
 public class World implements Drawable {
 
+    public final Random random = new Random();
+
     public final List<Entity> entities = new LinkedList<>();
     private final List<Entity> removeEntities = new LinkedList<>();
 
@@ -30,6 +32,8 @@ public class World implements Drawable {
     public int sand; // sand on screen level
 
     public World() {
+        Entity.world = this;
+
         entities.add(player);
         entities.add(new Obelisk());
 
@@ -55,9 +59,6 @@ public class World implements Drawable {
     }
 
     public void update() {
-        for (Entity entity : entities) {
-            entity.world = this;
-        }
         for (Entity entity : new ArrayList<>(entities)) {
             entity.update();
         }
@@ -73,7 +74,6 @@ public class World implements Drawable {
         List<Entity> local = new ArrayList<>(entities);
         Collections.sort(local, EntityComparator.instance);
         for (Entity entity : local) {
-            entity.world = this;
             entity.draw(target, states);
         }
     }
@@ -121,6 +121,10 @@ public class World implements Drawable {
         } while (ty > 0);
 
         entity.location = new Vector2f(entity.location.x + sx * tx, entity.location.y + sy * ty);
+    }
+
+    public float randomDistrib(float distrib) {
+        return random.nextFloat() * 2 * distrib - distrib;
     }
 
     private static class EntityComparator implements Comparator<Entity> {

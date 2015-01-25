@@ -13,7 +13,7 @@ import org.jsfml.system.Vector2f;
 public class Entity implements Drawable {
 
     public Vector2f location = Vector2f.ZERO;
-    protected World world;
+    protected static World world;
     protected Drawable drawable;
 
     public FloatRect collision;

@@ -35,9 +35,15 @@ public class Dunes extends Entity {
             }
         }
         FloatRect modified = Hacks.translateRect(myRect, location);
-        if (modified.intersection(Hacks.translateRect(world.getPlayer().collision, world.getPlayer().location)) != null && !successJ) {
-            if (++world.sand >= 200) {
-                world.fate = "a dusty";
+        if (modified.intersection(Hacks.translateRect(world.getPlayer().collision, world.getPlayer().location)) != null) {
+            if (successJ) {
+                if (world.sand < 30) {
+                    ++world.sand;
+                }
+            } else {
+                if (++world.sand >= 200) {
+                    world.fate = "a dusty";
+                }
             }
         } else {
             if (world.sand > 128) {
