@@ -5,13 +5,13 @@ import org.jsfml.graphics.FloatRect;
 import org.jsfml.graphics.RectangleShape;
 import org.jsfml.system.Vector2f;
 
-public class Bunker extends Interactable {
-
-    public Bunker(Vector2f l) {
+public class Key extends Interactable {
+	
+	public Key(Vector2f l) {
         location = new Vector2f(random(), random());
 
         RectangleShape shape = new RectangleShape(new Vector2f(30, 30));
-        shape.setFillColor(Color.GREEN);
+        shape.setFillColor(Color.WHITE);
         shape.setOrigin(15, 15);
         drawable = shape;
 
@@ -22,18 +22,15 @@ public class Bunker extends Interactable {
         return world.randomDistrib(500);
     }
 
-    @Override
-    public String getInteractText() {
-        return "Venture into the depths";
-    }
+	@Override
+	public String getInteractText() {
+		return "Pick up";
+	}
 
-    @Override
-    public void interact() {
-    	if(world.getPlayer().getKey()){
-    		world.fate = "a safe";
-    	}else{
-    		world.fate = "an explosive";
-    	}
-    }
+	@Override
+	public void interact() {
+		world.getPlayer().setKey();
+		world.remove(this);
+	}
 
 }

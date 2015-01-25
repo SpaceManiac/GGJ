@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Player extends Entity {
 
-    private boolean aHeldLast, follow = true;
+    private boolean aHeldLast, follow = true, key = false;
     private ArrayList<Follower> followers;
     private int hydration;
 
@@ -166,5 +166,13 @@ public class Player extends Entity {
 
     public int getHydration() {
         return hydration;
+    }
+    
+    public void setKey(){
+    	key = true;
+    }
+    
+    public boolean getKey(){
+    	return key;
     }
 }

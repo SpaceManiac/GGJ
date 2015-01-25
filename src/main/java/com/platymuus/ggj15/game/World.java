@@ -49,6 +49,7 @@ public class World implements Drawable {
 
         entities.add(new Boat(null, null));
         entities.add(new Bunker(null));
+        entities.add(new Key(null));
 
         island = Resources.getSprite("game/island-half.png");
         BoundsHandler.of(island).center();
