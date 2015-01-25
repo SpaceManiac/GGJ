@@ -30,10 +30,10 @@ public class GameOverScene extends Scene {
         titleText = new Text("You've met " + fate + " fate...", Resources.FONT_TITLE, 60);
         center(titleText);
 
-        if(goodEnd){
-        	beginText = new Text("Congratulations!", Resources.FONT_TEXT, 20);
-        }else{
-        	beginText = new Text("but maybe there was something else you could have done?", Resources.FONT_TEXT, 20);
+        if (goodEnd) {
+            beginText = new Text("Congratulations!", Resources.FONT_TEXT, 20);
+        } else {
+            beginText = new Text("but maybe there was something else you could have done?", Resources.FONT_TEXT, 20);
         }
         beginText.setPosition(0, -60);
         center(beginText);

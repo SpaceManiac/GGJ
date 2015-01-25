@@ -72,10 +72,11 @@ public class Player extends Entity {
         float dist = 0;
         for (Entity entity : world.entities) {
             if (entity instanceof Interactable) {
+                Interactable inter = (Interactable) entity;
                 Vector2f delta = Vector2f.sub(entity.location, location);
                 float thisDist = Hacks.dist(delta);
-                if (thisDist < 50 && (thisDist < dist || interactable == null)) {
-                    interactable = ((Interactable) entity);
+                if (thisDist < inter.getInteractZone() && (thisDist < dist || interactable == null)) {
+                    interactable = inter;
                     dist = thisDist;
                 }
             }

@@ -37,6 +37,11 @@ public class Oasis extends Interactable {
     }
 
     @Override
+    public float getInteractZone() {
+        return 120;
+    }
+
+    @Override
     public void update() {
         /*boolean successJ = false, successP = false;
         for (Follower f : world.getPlayer().getFollowers()) {

@@ -31,6 +31,10 @@ public abstract class Interactable extends Entity {
         return "";
     }
 
+    public float getInteractZone() {
+        return 50;
+    }
+
     public void setActive(boolean active) {
         this.active = active;
         if (active) {
