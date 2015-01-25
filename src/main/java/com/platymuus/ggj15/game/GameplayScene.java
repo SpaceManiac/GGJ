@@ -73,9 +73,9 @@ public class GameplayScene extends Scene {
             case ZOOM_OUT:
                 zoom *= 2;
                 break;
-            case RESTART:
+            /*case RESTART:
                 world = new World();
-                break;
+                break;*/
         }
     }
 

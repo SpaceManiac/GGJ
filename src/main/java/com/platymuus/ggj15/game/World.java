@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class World implements Drawable {
 
-    public final Random random = new Random();
+    public final Random random = new Random(30);
 
     public final List<Entity> entities = new LinkedList<>();
     private final List<Entity> removeEntities = new LinkedList<>();

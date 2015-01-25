@@ -19,7 +19,7 @@ public enum Control {
     // cheats
     ZOOM_IN(Keyboard.Key.EQUAL, XboxButton.LB),
     ZOOM_OUT(Keyboard.Key.DASH, XboxButton.RB),
-    RESTART(Keyboard.Key.F1, XboxButton.START),
+    //RESTART(Keyboard.Key.F1, XboxButton.START),
     GO_FAST(Keyboard.Key.LSHIFT, null),
     // movement
     UP(Keyboard.Key.UP, null),
