@@ -34,6 +34,11 @@ public class GameMap {
         // Q3
         add(L, new Path(), -500, 300);
         add(L, new ObeliskRune("tad"), -1000, 600);
+        for (int j = 1; j <= 3; ++j) {
+            add(L, new Path(), -1000 + 100 * j, 600 + 600 * j);
+        }
+        add(L, new ObeliskRune("ankh"), -1000 + 100 * 4, 600 + 600 * 4);
+        add(L, new ObeliskRune("bird"), -1000 + 100 * 7, 600 + 600 * 4 + 100);
 
         // Q4
         add(L, new Path(), 600, 600);

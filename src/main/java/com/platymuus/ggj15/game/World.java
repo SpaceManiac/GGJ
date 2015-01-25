@@ -42,7 +42,7 @@ public class World implements Drawable {
         for (int i = 0; i < 2; ++i) {
             entities.add(new Well(i));
         }
-        
+
         entities.add(new Boat(null, null));
 
         island = Resources.getSprite("game/island-half.png");
