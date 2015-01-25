@@ -14,13 +14,15 @@ import org.jsfml.window.event.Event;
 public class GameOverScene extends Scene {
 
     private String fate;
+    private boolean goodEnd;
 
     private Text titleText;
     private Text beginText;
     private BlackFade fade;
 
-    public GameOverScene(String fate) {
+    public GameOverScene(String fate, boolean g) {
         this.fate = fate;
+        goodEnd = g;
     }
 
     @Override
@@ -28,7 +30,11 @@ public class GameOverScene extends Scene {
         titleText = new Text("You've met " + fate + " fate...", Resources.FONT_TITLE, 60);
         center(titleText);
 
-        beginText = new Text("but maybe there was something else you could have done?", Resources.FONT_TEXT, 20);
+        if(goodEnd){
+        	beginText = new Text("Congratulations!", Resources.FONT_TEXT, 20);
+        }else{
+        	beginText = new Text("but maybe there was something else you could have done?", Resources.FONT_TEXT, 20);
+        }
         beginText.setPosition(0, -60);
         center(beginText);
 

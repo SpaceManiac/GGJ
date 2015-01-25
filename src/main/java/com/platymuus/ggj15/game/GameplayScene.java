@@ -105,7 +105,7 @@ public class GameplayScene extends Scene {
     @Override
     public void finish() {
         if (world.fate != null) {
-            runner.play(new GameOverScene(world.fate));
+            runner.play(new GameOverScene(world.fate,world.goodEnd));
         }
     }
 

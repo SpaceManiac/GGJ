@@ -8,11 +8,12 @@ import org.jsfml.system.Vector2f;
 public class Follower extends Entity {
 
     private Entity target;
+    private final String name;
 
-    public Follower(Entity t, Vector2f l) {
+    public Follower(Entity t, Vector2f l, String n) {
         target = t;
-
         location = l;
+        name = n;
 
         RectangleShape shape = new RectangleShape(new Vector2f(20, 20));
         shape.setFillColor(Color.RED);
@@ -30,5 +31,8 @@ public class Follower extends Entity {
                 location = Vector2f.add(target.location, delta);
             }
         }
+    }
+    public String getName(){
+    	return name;
     }
 }

@@ -25,6 +25,7 @@ public class World implements Drawable {
     public boolean controllerMode;
 
     public String fate;
+    public boolean goodEnd = false;
 
     public int sand; // sand on screen level
 
@@ -32,10 +33,11 @@ public class World implements Drawable {
         entities.add(player);
         entities.add(new Obelisk());
 
-        //entities.add(new Follower(player, new Vector2f(0,0)));
-        for (int i = 0; i < 4; ++i) {
-            entities.add(new StaticFollower());
-        }
+        entities.add(new StaticFollower("Joe"));
+        entities.add(new StaticFollower("Prof"));
+        entities.add(new StaticFollower("Dorky"));
+        entities.add(new StaticFollower("Soarin "));
+
 
         for (int i = 0; i < 100; ++i) {
             entities.add(new Rock());
