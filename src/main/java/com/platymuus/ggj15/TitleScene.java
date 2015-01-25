@@ -1,11 +1,16 @@
 package com.platymuus.ggj15;
 
+import com.platymuus.ggj15.game.Background;
 import com.platymuus.ggj15.game.GameplayScene;
 import com.platymuus.jsc.Hacks;
 import com.platymuus.jsc.Scene;
 import com.platymuus.jsc.gui.BlackFade;
+import com.platymuus.jsc.gui.OutlinedText;
+import org.jsfml.graphics.ConstView;
 import org.jsfml.graphics.RenderTarget;
 import org.jsfml.graphics.Text;
+import org.jsfml.graphics.View;
+import org.jsfml.system.Vector2f;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.Mouse;
 import org.jsfml.window.event.Event;
@@ -23,14 +28,18 @@ public class TitleScene extends Scene {
 
     private boolean doneOnFade;
 
+    private Background background;
+
     @Override
     public void initialize() throws Exception {
-        titleText = new Text(TITLE, Resources.FONT_TITLE, 60);
+        titleText = new OutlinedText(TITLE, 60);
         center(titleText);
 
-        beginText = new Text("Press any key or click to begin.", Resources.FONT_TEXT, 20);
+        beginText = new OutlinedText("Press any key or click to begin.", 20);
         beginText.setPosition(0, -60);
         center(beginText);
+
+        background = new Background("game/blendground.png");
 
         fade = new BlackFade();
         fade.fadeIn();
@@ -74,8 +83,13 @@ public class TitleScene extends Scene {
 
     @Override
     public void render(RenderTarget target) {
-        target.setView(Hacks.getCenteredView(target));
-        //target.draw(background);
+        ConstView centered = Hacks.getCenteredView(target);
+
+        View moving = new View(Vector2f.add(centered.getCenter(), new Vector2f((float) (50 * time), (float)(10 * time))), centered.getSize());
+        target.setView(moving);
+        target.draw(background);
+
+        target.setView(centered);
         target.draw(titleText);
         target.draw(beginText);
         target.draw(fade);
