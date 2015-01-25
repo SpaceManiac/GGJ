@@ -1,7 +1,10 @@
 package com.platymuus.ggj15.game;
 
 import com.platymuus.jsc.Hacks;
-import org.jsfml.graphics.*;
+import org.jsfml.graphics.Drawable;
+import org.jsfml.graphics.FloatRect;
+import org.jsfml.graphics.RenderStates;
+import org.jsfml.graphics.RenderTarget;
 import org.jsfml.system.Vector2f;
 
 /**

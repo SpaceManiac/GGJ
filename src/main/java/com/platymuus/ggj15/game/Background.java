@@ -45,8 +45,8 @@ public class Background implements Drawable {
     public void drawObscuring(double time, int alpha, RenderTarget target, RenderStates states) {
         ConstView view = target.getView();
         Vector2f center = new Vector2f(
-                view.getCenter().x + 600 * (float)time,
-                view.getCenter().y + 300 * (float)time
+                view.getCenter().x + 600 * (float) time,
+                view.getCenter().y + 300 * (float) time
         );
         target.setView(new View(center, view.getSize()));
         sprite.setColor(new Color(Color.WHITE, alpha));

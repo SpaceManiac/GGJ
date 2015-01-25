@@ -36,12 +36,6 @@ public class World implements Drawable {
         for (int i = 0; i < 4; ++i) {
             entities.add(new StaticFollower());
         }
-        
-        Entity last = player;
-        for (int i = 0; i < 4; ++i) {
-            last = new Follower(last);
-            entities.add(last);
-        }
 
         for (int i = 0; i < 100; ++i) {
             entities.add(new Rock());
@@ -138,9 +132,9 @@ public class World implements Drawable {
 
         entity.location = new Vector2f(entity.location.x + sx * tx, entity.location.y + sy * ty);
     }
-    
-    public void addEntity(Entity e){
-    	entities.add(e);
+
+    public void addEntity(Entity e) {
+        entities.add(e);
     }
 
     private static class EntityComparator implements Comparator<Entity> {
