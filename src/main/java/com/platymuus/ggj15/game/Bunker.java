@@ -1,25 +1,20 @@
 package com.platymuus.ggj15.game;
 
-import org.jsfml.graphics.Color;
+import com.platymuus.ggj15.Resources;
+import com.platymuus.jsc.BoundsHandler;
 import org.jsfml.graphics.FloatRect;
-import org.jsfml.graphics.RectangleShape;
-import org.jsfml.system.Vector2f;
+import org.jsfml.graphics.Sprite;
+import org.jsfml.system.Vector2i;
 
 public class Bunker extends Interactable {
 
-    public Bunker(Vector2f l) {
-        location = new Vector2f(random(), random());
+    public Bunker() {
+        Sprite sprite = Resources.getSprite("game/bunker.png");
+        BoundsHandler.of(sprite).position(0.5f, 1);
+        drawable = sprite;
 
-        RectangleShape shape = new RectangleShape(new Vector2f(30, 30));
-        shape.setFillColor(Color.GREEN);
-        shape.setOrigin(15, 15);
-        drawable = shape;
-
-        collision = new FloatRect(-15, -15, 30, 30);
-    }
-
-    private float random() {
-        return world.randomDistrib(500);
+        Vector2i size = sprite.getTexture().getSize();
+        collision = new FloatRect(-size.x / 2, -size.y / 2, size.x, size.y / 2);
     }
 
     @Override
@@ -29,10 +24,12 @@ public class Bunker extends Interactable {
 
     @Override
     public void interact() {
-        if (world.getPlayer().getKey()) {
-            world.fate = "a safe";
-        } else {
+        if (!world.getPlayer().getKey()) {
             world.fate = "an explosive";
+        } else if (world.getPlayer().getFollowers().size() > 1) {
+            world.fate = "a hungry";
+        } else {
+            world.fate = "a safe";
         }
     }
 

@@ -35,16 +35,11 @@ public class World implements Drawable {
 
         entities.add(player);
         entities.add(new Obelisk());
-
-        entities.addAll(GameMap.entities());
-
         for (int i = 0; i < 100; ++i) {
             entities.add(new Rock());
         }
 
-        entities.add(new Boat(null, null));
-        entities.add(new Bunker(null));
-        entities.add(new Key());
+        entities.addAll(GameMap.entities());
     }
 
     public Player getPlayer() {

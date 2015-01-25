@@ -48,6 +48,14 @@ public class GameMap {
         add(L, new Path(), 1200, 1100);
         add(L, new StaticFollower("Prof"), 1200, 1200);
 
+        add(L, new Bunker(), 1200, 4500);
+        add(L, new Key(), 3400, 3400);
+        L.add(new Boat(new Vector2f(2000, 3500), new Vector2f(2000, 4000)));
+
+        for (int j = -10; j <= 10; ++j) {
+            add(L, new River(), j * 1347, 3450);
+        }
+
         return L;
     }
 

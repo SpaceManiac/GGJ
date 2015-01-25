@@ -12,8 +12,8 @@ public class Boat extends Interactable {
     private boolean traveled = false;
 
     public Boat(Vector2f L1, Vector2f L2) {
-        location1 = location = new Vector2f(random(), random());
-        location2 = new Vector2f(random(), random());
+        location1 = location = L1;
+        location2 = L2;
 
         Sprite sprite = Resources.getSprite("game/boat.png");
         BoundsHandler.of(sprite).position(0.5f, 1);
@@ -21,10 +21,6 @@ public class Boat extends Interactable {
 
         Vector2i size = sprite.getTexture().getSize();
         collision = new FloatRect(-size.x * 3 / 8, -size.y * 3 / 4, size.x * 3 / 4, size.y * 3 / 4);
-    }
-
-    private float random() {
-        return world.randomDistrib(500);
     }
 
     @Override
